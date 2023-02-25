@@ -4,6 +4,8 @@ import NotFound from './Pages/NotFound'
 import Home from './Pages/Home'
 import Product from './Pages/Save/Product'
 import Store from './Pages/Save/Store'
+import Products from './Pages/Index/Products'
+import ProductDetails from './Pages/Show/Product'
 
 const Router = createBrowserRouter([
   {
@@ -14,6 +16,16 @@ const Router = createBrowserRouter([
   {
     path: '/product',
     element: <Product />,
+    errorElement: <NotFound />
+  },
+  {
+    path: '/product/show',
+    element: <ProductDetails />,
+    errorElement: <NotFound />
+  },
+  {
+    path: '/products',
+    element: <Products />,
     errorElement: <NotFound />
   },
   {

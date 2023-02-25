@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import { saveProduct } from '../../../firebase/collections/products'
 
 import { v4 as uuidv4 } from 'uuid'
+import { useNavigate } from 'react-router-dom'
 
 const Product = (): any => {
   const [name, setName] = useState<string>('')
   const [weight, setWeight] = useState<number>(0)
   const [price, setPrice] = useState<number>(0)
   const [stock, setStock] = useState<number>(0)
+
+  const navigate = useNavigate()
 
   const save = async (): Promise<void> => {
     const uuid = (document.getElementById('uuid') as HTMLInputElement).value
@@ -32,6 +35,10 @@ const Product = (): any => {
 
   return (
     <div className="App">
+      <button onClick={() => { navigate(-1) }} >
+        voltar
+      </button>
+      <br/>
       <input type="text" name='uuid' id="uuid" disabled defaultValue={uuidv4()} />
       <br/>
       <input type="text" name='name' placeholder='name' required onChange={e => { setName(e.target.value) }} value={name} />
