@@ -6,7 +6,7 @@ window.env = {
   "SHLVL": "1",
   "npm_config_noproxy": "",
   "HOME": "/home/juliano",
-  "OLDPWD": "/home/juliano/projects",
+  "OLDPWD": "/home/juliano",
   "NVM_BIN": "/home/juliano/.nvm/versions/node/v18.14.1/bin",
   "npm_package_json": "/home/juliano/projects/firebase-test/package.json",
   "npm_config_userconfig": "/home/juliano/.npmrc",
