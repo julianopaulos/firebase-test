@@ -8,7 +8,7 @@ const Product = (): any => {
       <button onClick={() => { navigate(-1) }} >
         voltar
       </button>
-      <h1>Ops</h1>
+      <h1>Ops!</h1>
     </div>
   )
 }
