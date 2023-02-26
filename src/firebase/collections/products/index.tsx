@@ -2,6 +2,7 @@ import { db } from '../../config'
 const collection = db.collection('products')
 
 interface Product {
+  storeId: string
   uuid: string
   name: string
   weight: number

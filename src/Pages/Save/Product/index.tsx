@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { saveProduct } from '../../../firebase/collections/products'
 
 import { v4 as uuidv4 } from 'uuid'
 import { useNavigate } from 'react-router-dom'
+import { type StoreInterface, indexStores } from '../../../firebase/collections/stores'
 
 const Product = (): any => {
+  const [stores, setStores] = useState<StoreInterface[]>([])
+  const [storeId, setStoreId] = useState<string>('')
   const [name, setName] = useState<string>('')
   const [weight, setWeight] = useState<number>(0)
   const [price, setPrice] = useState<number>(0)
@@ -12,9 +15,18 @@ const Product = (): any => {
 
   const navigate = useNavigate()
 
+  useEffect(() => {
+    const fetchStores = async (): Promise<any> => {
+      setStores(await indexStores())
+    }
+
+    void fetchStores()
+  }, [])
+
   const save = async (): Promise<void> => {
     const uuid = (document.getElementById('uuid') as HTMLInputElement).value
     const data = {
+      storeId,
       uuid,
       name,
       weight,
@@ -22,7 +34,9 @@ const Product = (): any => {
       stock
     };
 
-    (document.getElementById('uuid') as HTMLInputElement).value = uuidv4()
+    (document.getElementById('uuid') as HTMLInputElement).value = uuidv4();
+    (document.getElementById('store') as HTMLInputElement).value = ''
+    setStoreId('')
     setName('')
     setWeight(0)
     setPrice(0)
@@ -40,6 +54,13 @@ const Product = (): any => {
       </button>
       <br/>
       <input type="text" name='uuid' id="uuid" disabled defaultValue={uuidv4()} />
+      <br/>
+      <select name='store' id="store" onChange={e => { setStoreId(e.target.value) }}>
+        <option></option>
+        {stores.map((store, key) => (
+          <option key={key} value={store.uuid}>{store.name}</option>
+        ))}
+      </select>
       <br/>
       <input type="text" name='name' placeholder='name' required onChange={e => { setName(e.target.value) }} value={name} />
       <br/>

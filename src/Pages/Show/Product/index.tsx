@@ -22,6 +22,7 @@ const ProductDetails = (): any => {
       {products?.map((product, key) => {
         return (
             <ul key={key}>
+                <li><b>identificação da loja</b>: {product.storeId}</li>
                 <li><b>identificação</b>: {product.uuid}</li>
                 <li><b>nome</b>: {product.name}</li>
                 <li><b>peso</b>: {product.weight}</li>
