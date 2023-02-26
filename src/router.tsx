@@ -6,6 +6,8 @@ import Product from './Pages/Save/Product'
 import Store from './Pages/Save/Store'
 import Products from './Pages/Index/Products'
 import ProductDetails from './Pages/Show/Product'
+import Stores from './Pages/Index/Stores'
+import StoreDetails from './Pages/Show/Store'
 
 const Router = createBrowserRouter([
   {
@@ -31,6 +33,16 @@ const Router = createBrowserRouter([
   {
     path: '/store',
     element: <Store />,
+    errorElement: <NotFound />
+  },
+  {
+    path: '/store/show',
+    element: <StoreDetails />,
+    errorElement: <NotFound />
+  },
+  {
+    path: '/stores',
+    element: <Stores />,
     errorElement: <NotFound />
   }
 ])

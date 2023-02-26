@@ -3,10 +3,11 @@ import { getProduct, type ProductInterface } from '../../../firebase/collections
 import { useNavigate } from 'react-router-dom'
 
 const ProductDetails = (): any => {
+  const [uuid, setUuid] = useState<string>('')
   const [products, setProducts] = useState<ProductInterface[]>([])
   const navigate = useNavigate()
 
-  async function handleSeach (uuid: string): Promise<void> {
+  async function handleSeach (): Promise<void> {
     setProducts(await getProduct(uuid))
   }
 
@@ -16,7 +17,8 @@ const ProductDetails = (): any => {
         voltar
       </button>
       <h3>Produto:</h3>
-      <input type='text' name='uuid' placeholder='identificação do produto' onChange={ (e) => { void handleSeach(e.target.value) }} />
+      <input type='text' name='uuid' placeholder='identificação do produto' onChange={ (e) => { setUuid(e.target.value) }} />
+      <button onClick={ () => { void handleSeach() } }>Buscar</button>
       {products?.map((product, key) => {
         return (
             <ul key={key}>

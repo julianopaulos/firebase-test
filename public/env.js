@@ -19,7 +19,7 @@ window.env = {
   "WAYLAND_DISPLAY": "wayland-0",
   "LOGNAME": "juliano",
   "NAME": "DESKTOP-TAAEQHC",
-  "WSL_INTEROP": "/run/WSL/9337_interop",
+  "WSL_INTEROP": "/run/WSL/167_interop",
   "PULSE_SERVER": "/mnt/wslg/PulseServer",
   "_": "/home/juliano/.nvm/versions/node/v18.14.1/bin/npm",
   "npm_config_prefix": "/home/juliano/.nvm/versions/node/v18.14.1",
