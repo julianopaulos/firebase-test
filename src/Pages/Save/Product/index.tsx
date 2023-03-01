@@ -35,7 +35,7 @@ const Product = (): any => {
         voltar
       </button>
       <br/>
-      <form id="form" onSubmit={ (e) => { handleSubmit(save)(e).catch((error) => { console.log('error', error) }) } }>
+      <form id="form" onSubmit={ handleSubmit(save) }>
         <input type="text" name='uuid' id="uuid" disabled defaultValue={uuidv4()} />
         <br/>
         <select id="store" {...register('storeId', { required: true })}>
