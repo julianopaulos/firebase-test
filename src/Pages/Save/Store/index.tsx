@@ -6,6 +6,7 @@ import { saveStore, type StoreInterface } from '../../../firebase/collections/st
 
 import { v4 as uuidv4 } from 'uuid'
 import Input from '../../../components/Input'
+import Button from '../../../components/Button'
 
 const Store = (): any => {
   const navigate = useNavigate()
@@ -21,20 +22,20 @@ const Store = (): any => {
   }
 
   return (
-    <div className="App">
-      <button onClick={() => { navigate(-1) }} >
+    <div>
+      <Button onClick={() => { navigate(-1) }} >
         voltar
-      </button>
+      </Button>
       <form onSubmit={ handleSubmit(save) }>
-        <Input type="text" name='uuid' id="uuid" disabled defaultValue={uuidv4()} />
+        <Input type="text" {...register('uuid', { required: true })} id="uuid" disabled defaultValue={uuidv4()} />
         <br/>
-        <input type="text" placeholder='name' {...register('name', { required: true })} />
+        <Input type="text" placeholder='name' {...register('name', { required: true })} />
         {(Boolean(errors.name)) && <span>This field is required</span>}
         <br/>
-        <input type="text" {...register('address', { required: true })} />
+        <Input type="text" {...register('address', { required: true })} />
         {(Boolean(errors.address)) && <span>This field is required</span>}
         <br/>
-        <button type="submit">criar produto</button>
+        <Button type="submit" backgroundColor={'rgba(80, 170, 100, 1)'}>criar produto</Button>
       </form>
     </div>
   )
