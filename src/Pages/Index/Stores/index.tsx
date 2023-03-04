@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { indexStores, type StoreInterface } from '../../../firebase/collections/stores'
 import { useNavigate } from 'react-router-dom'
+import Button from '../../../components/Button'
 
 const Store = (): any => {
   const [stores, setStores] = useState<StoreInterface[]>([])
@@ -16,9 +17,9 @@ const Store = (): any => {
 
   return (
     <div className="App">
-      <button onClick={() => { navigate(-1) }} >
+      <Button onClick={() => { navigate(-1) }} >
         voltar
-      </button>
+      </Button>
       <h3>Lojas:</h3>
       {stores?.map((store, key) => {
         return (
@@ -26,6 +27,7 @@ const Store = (): any => {
                 <li><b>identificação</b>: {store.uuid}</li>
                 <li><b>nome</b>: {store.name}</li>
                 <li><b>peso</b>: {store.address}</li>
+                <br/>
             </ul>
         )
       })}

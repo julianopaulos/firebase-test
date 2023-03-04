@@ -1,13 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import Button from '../../components/Button/index'
 
 const Product = (): any => {
   const navigate = useNavigate()
   return (
     <div>
-      <button onClick={() => { navigate(-1) }} >
+      <Button onClick={() => { navigate(-1) }} >
         voltar
-      </button>
+      </Button>
       <h1>Ops!</h1>
     </div>
   )

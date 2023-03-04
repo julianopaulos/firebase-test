@@ -5,9 +5,9 @@ import Home from './Pages/Home'
 import Product from './Pages/Save/Product'
 import Store from './Pages/Save/Store'
 import Products from './Pages/Index/Products'
-import ProductDetails from './Pages/Show/Product'
+import ProductDetails from './Pages/Show/ProductDetails'
 import Stores from './Pages/Index/Stores'
-import StoreDetails from './Pages/Show/Store'
+import StoreDetails from './Pages/Show/StoreDetails'
 
 const Router = createBrowserRouter([
   {

@@ -2,6 +2,7 @@ import React, { type ButtonHTMLAttributes } from 'react'
 import styled from 'styled-components'
 
 interface StyleProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  Elementwidth?: string
   color?: string
   margin?: string
   backgroundColor?: string
@@ -14,8 +15,9 @@ const StyledButton = styled.button<StyleProps>`
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  width: ${(p: StyleProps) => p.Elementwidth ?? '200px;'};
   color: ${(p: StyleProps) => p.color ?? 'black'};
-  background-color: ${(p: StyleProps) => p.backgroundColor ?? 'rgba(240, 240, 240, 1)'};
+  background-color: ${(p: StyleProps) => p.backgroundColor ?? 'rgba(200, 200, 200, 1)'};
   margin: ${(p: StyleProps) => p.margin ?? '10px'};
   transition: .3s;
 

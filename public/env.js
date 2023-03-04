@@ -5,6 +5,7 @@ window.env = {
   "npm_node_execpath": "/home/juliano/.nvm/versions/node/v18.14.1/bin/node",
   "SHLVL": "1",
   "npm_config_noproxy": "",
+  "MOTD_SHOWN": "update-motd",
   "HOME": "/home/juliano",
   "OLDPWD": "/home/juliano",
   "NVM_BIN": "/home/juliano/.nvm/versions/node/v18.14.1/bin",

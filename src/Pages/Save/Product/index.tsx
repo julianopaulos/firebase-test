@@ -5,9 +5,16 @@ import { useForm, type SubmitHandler } from 'react-hook-form'
 
 import { type ProductInterface, saveProduct } from '../../../firebase/collections/products'
 import { type StoreInterface, indexStores } from '../../../firebase/collections/stores'
+import Input from '../../../components/Input'
+import Button from '../../../components/Button/index'
+import Select from '../../../components/Select'
 
 const Product = (): any => {
-  const { register, handleSubmit, formState: { errors } } = useForm<ProductInterface>()
+  const { register, handleSubmit, formState: { errors } } = useForm<ProductInterface>({
+    defaultValues: {
+      uuid: uuidv4()
+    }
+  })
 
   const [stores, setStores] = useState<StoreInterface[]>([])
 
@@ -31,34 +38,34 @@ const Product = (): any => {
 
   return (
     <div className="App">
-      <button onClick={() => { navigate(-1) }} >
+      <Button onClick={() => { navigate(-1) }} >
         voltar
-      </button>
+      </Button>
       <br/>
       <form id="form" onSubmit={ handleSubmit(save) }>
-        <input type="text" name='uuid' id="uuid" disabled defaultValue={uuidv4()} />
+        <Input type="text" {...register('uuid', { required: true })} disabled />
         <br/>
-        <select id="store" {...register('storeId', { required: true })}>
+        <Select id="store" {...register('storeId', { required: true })}>
           <option></option>
           {stores.map((store, key) => (
             <option key={key} value={store.uuid}>{store.name}</option>
           ))}
-        </select>
+        </Select>
         {(Boolean(errors.storeId)) && <span>This field is required</span>}
         <br/>
-        <input type="text" placeholder='name' {...register('name', { required: true })} />
+        <Input type="text" placeholder='name' {...register('name', { required: true })} />
         {(Boolean(errors.name)) && <span>This field is required</span>}
         <br/>
-        <input type="number" {...register('weight', { required: true, min: 1 })} />
+        <Input type="number" {...register('weight', { required: true, min: 1 })} />
         {(Boolean(errors.weight)) && <span>This field is required</span>}
         <br/>
-        <input type="number" {...register('price', { required: true, min: 1 })} />
+        <Input type="number" {...register('price', { required: true, min: 1 })} />
         {(Boolean(errors.price)) && <span>This field is required</span>}
         <br/>
-        <input type="number" {...register('stock', { required: true, min: 0 })} />
+        <Input type="number" {...register('stock', { required: true, min: 0 })} />
         {(Boolean(errors.stock)) && <span>This field is required</span>}
         <br/>
-        <input type='submit' value='criar produto' />
+        <Button type='submit' backgroundColor={'rgba(80, 170, 100, 1)'}>criar produto</Button>
       </form>
     </div>
   )

@@ -1,24 +1,38 @@
 import React, { useState } from 'react'
 import { getProduct, type ProductInterface } from '../../../firebase/collections/products'
 import { useNavigate } from 'react-router-dom'
+import { type SubmitHandler, useForm } from 'react-hook-form'
+
+import Button from '../../../components/Button'
+import Input from '../../../components/Input'
 
 const ProductDetails = (): any => {
-  const [uuid, setUuid] = useState<string>('')
   const [products, setProducts] = useState<ProductInterface[]>([])
   const navigate = useNavigate()
 
-  async function handleSeach (): Promise<void> {
-    setProducts(await getProduct(uuid))
+  const { register, handleSubmit, formState: { errors } } = useForm<ProductInterface>()
+
+  const search: SubmitHandler<ProductInterface> = async (data, event): Promise<void> => {
+    setProducts(await getProduct(data.uuid))
+
+    if (products.length === 0) {
+      alert('nenhum produto com essa identificação')
+    }
+
+    event?.target.reset()
   }
 
   return (
     <div className="App">
-      <button onClick={() => { navigate(-1) }} >
+      <Button onClick={() => { navigate(-1) }} >
         voltar
-      </button>
-      <h3>Produto:</h3>
-      <input type='text' name='uuid' placeholder='identificação do produto' onChange={ (e) => { setUuid(e.target.value) }} />
-      <button onClick={ () => { void handleSeach() } }>Buscar</button>
+      </Button>
+      <form onSubmit={ handleSubmit(search) }>
+        <h3>Produto:</h3>
+        <Input type='text' placeholder='identificação do produto' {...register('uuid', { required: true })} />
+        {(Boolean(errors.uuid)) && <span>This field is required</span>}
+        <Button type="submit">Buscar</Button>
+      </form>
       {products?.map((product, key) => {
         return (
             <ul key={key}>

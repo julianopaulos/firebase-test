@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { indexProducts, type ProductInterface } from '../../../firebase/collections/products'
 import { useNavigate } from 'react-router-dom'
+import Button from '../../../components/Button'
 
 const Product = (): any => {
   const [products, setProducts] = useState<ProductInterface[]>([])
@@ -16,9 +17,9 @@ const Product = (): any => {
 
   return (
     <div className="App">
-      <button onClick={() => { navigate(-1) }} >
+      <Button onClick={() => { navigate(-1) }} >
         voltar
-      </button>
+      </Button>
       <h3>Produtos:</h3>
       {products?.map((product, key) => {
         return (
@@ -29,6 +30,7 @@ const Product = (): any => {
                 <li><b>peso</b>: {product.weight}</li>
                 <li><b>preço</b>: {product.price}</li>
                 <li><b>estoque</b>: {product.stock}</li>
+                <br/>
             </ul>
         )
       })}
