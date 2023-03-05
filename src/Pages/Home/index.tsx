@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 const Home = (): any => {
   return (
@@ -28,6 +28,7 @@ const Home = (): any => {
           Filtrar Loja por identificação:
           <Link to={'store/show'}> Aqui </Link>
         </h3>
+        <Outlet />
     </div>
   )
 }
