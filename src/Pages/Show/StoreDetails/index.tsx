@@ -1,6 +1,8 @@
 import React from 'react'
-import { type StoreInterface } from '../../../firebase/collections/stores'
 import { useLoaderData, useNavigate } from 'react-router-dom'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
+
+import { type StoreInterface } from '../../../firebase/collections/stores'
 
 import Button from '../../../components/Button'
 
@@ -10,8 +12,11 @@ const StoreDetails = (): any => {
 
   return (
     <div className="App">
-      <Button onClick={() => { navigate(-1) }} >
-        voltar
+      <Button
+        onClick={() => { navigate(-1) }}
+        Elementwidth={'20px'}
+      >
+        <AiOutlineArrowLeft size={20} />
       </Button>
       {stores?.map((store, key) => {
         return (

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useNavigate } from 'react-router-dom'
 import { useForm, type SubmitHandler } from 'react-hook-form'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 import { type ProductInterface, saveProduct } from '../../../firebase/collections/products'
 import { type StoreInterface, indexStores } from '../../../firebase/collections/stores'
+
 import Input from '../../../components/Input'
 import Button from '../../../components/Button/index'
 import Select from '../../../components/Select'
@@ -38,8 +40,11 @@ const Product = (): any => {
 
   return (
     <div className="App">
-      <Button onClick={() => { navigate(-1) }} >
-        voltar
+      <Button
+        onClick={() => { navigate(-1) }}
+        Elementwidth={'20px'}
+      >
+        <AiOutlineArrowLeft size={20} />
       </Button>
       <br/>
       <form id="form" onSubmit={ handleSubmit(save) }>

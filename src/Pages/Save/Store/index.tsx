@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useForm, type SubmitHandler } from 'react-hook-form'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 import { type StoreInterface, saveStore } from '../../../firebase/collections/stores'
 
@@ -27,8 +28,11 @@ const Store = (): any => {
 
   return (
     <div>
-      <Button onClick={() => { navigate(-1) }} >
-        voltar
+      <Button
+        onClick={() => { navigate(-1) }}
+        Elementwidth={'20px'}
+      >
+        <AiOutlineArrowLeft size={20} />
       </Button>
       <form id="form" onSubmit={ handleSubmit(save) }>
         <Input type="text" disabled {...register('uuid', { required: true })}/>

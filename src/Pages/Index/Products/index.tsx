@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, Link, useLoaderData } from 'react-router-dom'
 import { type SubmitHandler, useForm } from 'react-hook-form'
+import { AiOutlineArrowLeft, AiOutlineLink } from 'react-icons/ai'
 
 import { indexProducts, getProduct, type ProductInterface } from '../../../firebase/collections/products'
 
@@ -32,8 +33,11 @@ const Product = (): any => {
 
   return (
     <div className="App">
-      <Button onClick={() => { navigate(-1) }} >
-        voltar
+      <Button
+        onClick={() => { navigate(-1) }}
+        Elementwidth={'20px'}
+      >
+        <AiOutlineArrowLeft size={20} />
       </Button>
       <form onSubmit={ handleSubmit(search) }>
         <h3>Produto:</h3>
@@ -42,17 +46,28 @@ const Product = (): any => {
         <Button type="submit">Buscar</Button>
       </form>
       <h3>Produtos:</h3>
-      {products?.map((product, key) => {
-        return (
-            <ul key={key}>
-                <li><b>identificação da loja</b>: {product.storeId}</li>
-                <li><b>identificação</b>: {product.uuid}</li>
-                <li><b>nome</b>: {product.name}</li>
-                <li><Link to={product.uuid}>Detalhes</Link></li>
-                <br/>
-            </ul>
-        )
-      })}
+      <table>
+        <thead>
+          <tr>
+            <th>identificação da loja</th>
+            <th>identificação do produto</th>
+            <th>nome do produto</th>
+            <th><AiOutlineLink /></th>
+          </tr>
+        </thead>
+        <tbody>
+          {products?.map((product, key) => {
+            return (
+              <tr key={key}>
+                <td>{product.storeId}</td>
+                <td>{product.uuid}</td>
+                <td>{product.name}</td>
+                <td><Link to={product.uuid}>Detalhes</Link></td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </div>
   )
 }

@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { Link, useLoaderData, useNavigate } from 'react-router-dom'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
+
+import { getStore, indexStores, type StoreInterface } from '../../../firebase/collections/stores'
 
 import Button from '../../../components/Button'
 import Input from '../../../components/Input'
-
-import { getStore, indexStores, type StoreInterface } from '../../../firebase/collections/stores'
 
 const Store = (): any => {
   const [stores, setStores] = useState<StoreInterface[]>(useLoaderData() as StoreInterface[])
@@ -33,8 +34,11 @@ const Store = (): any => {
 
   return (
     <div className="App">
-      <Button onClick={() => { navigate(-1) }} >
-        voltar
+      <Button
+        onClick={() => { navigate(-1) }}
+        Elementwidth={'20px'}
+      >
+        <AiOutlineArrowLeft size={20} />
       </Button>
       <form onSubmit={ handleSubmit(search) }>
         <h3>Loja:</h3>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLoaderData, useNavigate } from 'react-router-dom'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 import { type ProductInterface } from '../../../firebase/collections/products'
 
@@ -11,8 +12,11 @@ const ProductDetails = (): any => {
 
   return (
     <div className="App">
-      <Button onClick={() => { navigate(-1) }} >
-        voltar
+      <Button
+        onClick={() => { navigate(-1) }}
+        Elementwidth={'20px'}
+      >
+        <AiOutlineArrowLeft size={20} />
       </Button>
       {products?.map((product: ProductInterface, key: any) => {
         return (
