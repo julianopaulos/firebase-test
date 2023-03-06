@@ -2,6 +2,7 @@ import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
 import { indexProducts, getProduct } from './firebase/collections/products'
+import { indexStores, getStore } from './firebase/collections/stores'
 
 import NotFound from './Pages/NotFound'
 import Home from './Pages/Home'
@@ -44,14 +45,19 @@ const Router = createBrowserRouter([
     errorElement: <NotFound />
   },
   {
-    path: '/store/show',
-    element: <StoreDetails />,
-    errorElement: <NotFound />
-  },
-  {
     path: '/stores',
     element: <Stores />,
-    errorElement: <NotFound />
+    errorElement: <NotFound />,
+    loader: indexStores
+  },
+  {
+    path: '/stores/:uuid',
+    element: <StoreDetails />,
+    errorElement: <NotFound />,
+    loader: async ({ params }) => {
+      const uuid: string = params.uuid ?? ''
+      return await getStore(uuid)
+    }
   }
 ])
 
