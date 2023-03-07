@@ -42,7 +42,7 @@ const Product = (): any => {
     <div className="App">
       <Button
         onClick={() => { navigate(-1) }}
-        Elementwidth={'20px'}
+        elementWidth={'20px'}
       >
         <AiOutlineArrowLeft size={20} />
       </Button>

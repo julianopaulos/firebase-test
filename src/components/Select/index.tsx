@@ -1,4 +1,4 @@
-import React, { forwardRef, type HTMLProps, type SelectHTMLAttributes } from 'react'
+import React, { type ForwardedRef, forwardRef, type SelectHTMLAttributes } from 'react'
 import styled from 'styled-components'
 
 interface StyleProps extends SelectHTMLAttributes<HTMLSelectElement> {
@@ -25,7 +25,7 @@ const StyledSelect = styled.select<StyleProps>`
   }
 `
 
-const Select = forwardRef<HTMLSelectElement, HTMLProps<HTMLSelectElement>>(({ children, ...props }: StyleProps, ref) => {
+const Select = forwardRef(({ children, ...props }: StyleProps, ref: ForwardedRef<HTMLSelectElement>) => {
   return (
     <StyledSelect {...props} ref={ref}>
         {children}

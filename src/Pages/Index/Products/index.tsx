@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate, Link, useLoaderData } from 'react-router-dom'
 import { type SubmitHandler, useForm } from 'react-hook-form'
-import { AiOutlineArrowLeft, AiOutlineLink } from 'react-icons/ai'
+import { AiOutlineArrowLeft, AiOutlineLink, AiOutlineSearch } from 'react-icons/ai'
 
 import { indexProducts, getProduct, type ProductInterface } from '../../../firebase/collections/products'
 
 import Button from '../../../components/Button'
 import Input from '../../../components/Input'
+import Div from '../../../components/Div'
 
 const Product = (): any => {
   const [products, setProducts] = useState<ProductInterface[]>(useLoaderData() as ProductInterface[])
@@ -35,15 +36,32 @@ const Product = (): any => {
     <div className="App">
       <Button
         onClick={() => { navigate(-1) }}
-        Elementwidth={'20px'}
+        elementWidth={'20px'}
       >
         <AiOutlineArrowLeft size={20} />
       </Button>
       <form onSubmit={ handleSubmit(search) }>
         <h3>Produto:</h3>
-        <Input type='text' placeholder='identificação do produto' {...register('uuid', { min: 1 })} />
+        <Div>
+          <Input
+           type='text'
+           placeholder='identificação do produto'
+           margin='10px 0'
+           borderTopRightRadius='0'
+           borderBottomRightRadius='0'
+           {...register('uuid', { min: 1 })}
+          />
+          <Button
+            type="submit"
+            elementWidth='20px'
+            borderTopLeftRadius='0'
+            borderBottomLeftRadius='0'
+            margin='10px 0'
+          >
+            <AiOutlineSearch/>
+          </Button>
+        </Div>
         {(Boolean(errors.uuid)) && <span>This field is required</span>}
-        <Button type="submit">Buscar</Button>
       </form>
       <h3>Produtos:</h3>
       <table>
