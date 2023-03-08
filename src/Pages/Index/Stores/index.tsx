@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { Link, useLoaderData, useNavigate } from 'react-router-dom'
-import { AiOutlineArrowLeft, AiOutlineSearch } from 'react-icons/ai'
+import { AiOutlineArrowLeft, AiOutlineLink, AiOutlineSearch } from 'react-icons/ai'
 
 import { getStore, indexStores, type StoreInterface } from '../../../firebase/collections/stores'
 
 import Button from '../../../components/Button'
 import Input from '../../../components/Input'
 import Div from '../../../components/Div'
+import Table from '../../../components/Table'
 
 const Store = (): any => {
   const [stores, setStores] = useState<StoreInterface[]>(useLoaderData() as StoreInterface[])
@@ -42,21 +43,17 @@ const Store = (): any => {
         <AiOutlineArrowLeft size={20} />
       </Button>
       <form onSubmit={ handleSubmit(search) }>
-        <h3>Loja:</h3>
         <Div>
+          <h3>Loja: </h3>
           <Input
            type='text'
            placeholder='identificação da loja'
            margin='10px 0'
-           borderTopRightRadius='0'
-           borderBottomRightRadius='0'
            {...register('uuid', { min: 1 })}
           />
           <Button
             type="submit"
             elementWidth='20px'
-            borderTopLeftRadius='0'
-            borderBottomLeftRadius='0'
             margin='10px 0'
           >
             <AiOutlineSearch/>
@@ -64,18 +61,30 @@ const Store = (): any => {
         </Div>
         {(Boolean(errors.uuid)) && <span>This field is required</span>}
       </form>
+      <br />
       <h3>Lojas:</h3>
-      {stores?.map((store, key) => {
-        return (
-            <ul key={key}>
-                <li><b>identificação</b>: {store.uuid}</li>
-                <li><b>nome</b>: {store.name}</li>
-                <li><b>peso</b>: {store.address}</li>
-                <li><Link to={store.uuid}>Detalhes</Link></li>
-                <br/>
-            </ul>
-        )
-      })}
+      <Table>
+        <thead>
+          <tr>
+            <th>identificação da loja</th>
+            <th>nome da loja</th>
+            <th>endereço da loja</th>
+            <th><AiOutlineLink /></th>
+          </tr>
+        </thead>
+        <tbody>
+          {stores?.map((store, key) => {
+            return (
+              <tr key={key}>
+                <td>identificação: {store.uuid}</td>
+                <td>nome: {store.name}</td>
+                <td>peso: {store.address}</td>
+                <td><Link to={store.uuid}>Detalhes</Link></td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </Table>
     </div>
   )
 }

@@ -8,6 +8,7 @@ import { indexProducts, getProduct, type ProductInterface } from '../../../fireb
 import Button from '../../../components/Button'
 import Input from '../../../components/Input'
 import Div from '../../../components/Div'
+import Table from '../../../components/Table'
 
 const Product = (): any => {
   const [products, setProducts] = useState<ProductInterface[]>(useLoaderData() as ProductInterface[])
@@ -41,21 +42,17 @@ const Product = (): any => {
         <AiOutlineArrowLeft size={20} />
       </Button>
       <form onSubmit={ handleSubmit(search) }>
-        <h3>Produto:</h3>
         <Div>
+          <h3>Produto:</h3>
           <Input
            type='text'
            placeholder='identificação do produto'
            margin='10px 0'
-           borderTopRightRadius='0'
-           borderBottomRightRadius='0'
            {...register('uuid', { min: 1 })}
           />
           <Button
             type="submit"
             elementWidth='20px'
-            borderTopLeftRadius='0'
-            borderBottomLeftRadius='0'
             margin='10px 0'
           >
             <AiOutlineSearch/>
@@ -63,8 +60,9 @@ const Product = (): any => {
         </Div>
         {(Boolean(errors.uuid)) && <span>This field is required</span>}
       </form>
+      <br />
       <h3>Produtos:</h3>
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>identificação da loja</th>
@@ -85,7 +83,7 @@ const Product = (): any => {
             )
           })}
         </tbody>
-      </table>
+      </Table>
     </div>
   )
 }
