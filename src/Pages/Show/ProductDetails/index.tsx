@@ -5,6 +5,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { type ProductInterface } from '../../../firebase/collections/products'
 
 import Button from '../../../components/Button'
+import Table from '../../../components/Table'
 
 const ProductDetails = (): any => {
   const products = useLoaderData() as ProductInterface[]
@@ -18,18 +19,32 @@ const ProductDetails = (): any => {
       >
         <AiOutlineArrowLeft size={20} />
       </Button>
-      {products?.map((product: ProductInterface, key: any) => {
-        return (
-            <ul key={key}>
-                <li><b>identificação da loja</b>: {product.storeId}</li>
-                <li><b>identificação</b>: {product.uuid}</li>
-                <li><b>nome</b>: {product.name}</li>
-                <li><b>peso</b>: {product.weight}</li>
-                <li><b>preço</b>: {product.price}</li>
-                <li><b>estoque</b>: {product.stock}</li>
-            </ul>
-        )
-      })}
+      <Table>
+        <thead>
+          <tr>
+            <th>identificação da loja</th>
+            <th>identificação</th>
+            <th>nome</th>
+            <th>peso</th>
+            <th>preço</th>
+            <th>estoque</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products?.map((product: ProductInterface, key: any) => {
+            return (
+              <tr key={key}>
+                  <td>{product.storeId}</td>
+                  <td>{product.uuid}</td>
+                  <td>{product.name}</td>
+                  <td>{product.weight}</td>
+                  <td>{product.price}</td>
+                  <td>{product.stock}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </Table>
     </div>
   )
 }

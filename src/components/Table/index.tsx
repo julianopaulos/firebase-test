@@ -7,6 +7,8 @@ const StyledTable = styled.table`
   border-collapse: collapse;
 
   caption-side: bottom;
+  width: 100%;
+
   td,
   th {
     border: none;

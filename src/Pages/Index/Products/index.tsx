@@ -34,34 +34,35 @@ const Product = (): any => {
   }
 
   return (
-    <div className="App">
-      <Button
-        onClick={() => { navigate(-1) }}
-        elementWidth={'20px'}
-      >
-        <AiOutlineArrowLeft size={20} />
-      </Button>
-      <form onSubmit={ handleSubmit(search) }>
-        <Div>
-          <h3>Produto:</h3>
-          <Input
-           type='text'
-           placeholder='identificação do produto'
-           margin='10px 0'
-           {...register('uuid', { min: 1 })}
-          />
-          <Button
-            type="submit"
-            elementWidth='20px'
-            margin='10px 0'
-          >
-            <AiOutlineSearch/>
-          </Button>
-        </Div>
-        {(Boolean(errors.uuid)) && <span>This field is required</span>}
-      </form>
+    <Div flexDirection='column'>
+      <Div justifyContent='space-between'>
+        <Button
+          onClick={() => { navigate(-1) }}
+          elementWidth={'20px'}
+        >
+          <AiOutlineArrowLeft size={20} />
+        </Button>
+        <form onSubmit={ handleSubmit(search) }>
+          <Div>
+            <h3>Pesquisar:</h3>
+            <Input
+            type='text'
+            placeholder='identificação do produto'
+            margin='10px 0 10px 5px'
+            {...register('uuid', { min: 1 })}
+            />
+            <Button
+              type="submit"
+              elementWidth='20px'
+              margin='10px 0'
+            >
+              <AiOutlineSearch/>
+            </Button>
+          </Div>
+          {(Boolean(errors.uuid)) && <span>This field is required</span>}
+        </form>
+      </Div>
       <br />
-      <h3>Produtos:</h3>
       <Table>
         <thead>
           <tr>
@@ -84,7 +85,7 @@ const Product = (): any => {
           })}
         </tbody>
       </Table>
-    </div>
+    </Div>
   )
 }
 

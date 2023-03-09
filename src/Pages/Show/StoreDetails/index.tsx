@@ -5,6 +5,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { type StoreInterface } from '../../../firebase/collections/stores'
 
 import Button from '../../../components/Button'
+import Table from '../../../components/Table'
 
 const StoreDetails = (): any => {
   const stores = useLoaderData() as StoreInterface[]
@@ -18,15 +19,26 @@ const StoreDetails = (): any => {
       >
         <AiOutlineArrowLeft size={20} />
       </Button>
-      {stores?.map((store, key) => {
-        return (
-            <ul key={key}>
-                <li><b>identificação</b>: {store.uuid}</li>
-                <li><b>nome</b>: {store.name}</li>
-                <li><b>peso</b>: {store.address}</li>
-            </ul>
-        )
-      })}
+      <Table>
+        <thead>
+          <tr>
+          <th>identificação</th>
+          <th>nome</th>
+          <th>peso</th>
+          </tr>
+        </thead>
+        <tbody>
+          {stores?.map((store, key) => {
+            return (
+              <tr key={key}>
+                <td>{store.uuid}</td>
+                <td>{store.name}</td>
+                <td>{store.address}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </Table>
     </div>
   )
 }

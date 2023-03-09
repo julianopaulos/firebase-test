@@ -12,4 +12,12 @@ export default createGlobalStyle<HtmlHTMLAttributes<HTMLElement>>`
     -webkit-box-sizing: content-box; 
     box-sizing: content-box;
   }
+
+  body {
+    background-color: rgba(220, 220, 220, 1);
+  }
+
+  a {
+    text-decoration: none;
+  }
 `

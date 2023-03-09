@@ -35,34 +35,35 @@ const Store = (): any => {
   }
 
   return (
-    <div className="App">
-      <Button
-        onClick={() => { navigate(-1) }}
-        elementWidth={'20px'}
-      >
-        <AiOutlineArrowLeft size={20} />
-      </Button>
-      <form onSubmit={ handleSubmit(search) }>
-        <Div>
-          <h3>Loja: </h3>
-          <Input
-           type='text'
-           placeholder='identificação da loja'
-           margin='10px 0'
-           {...register('uuid', { min: 1 })}
-          />
-          <Button
-            type="submit"
-            elementWidth='20px'
-            margin='10px 0'
-          >
-            <AiOutlineSearch/>
-          </Button>
-        </Div>
-        {(Boolean(errors.uuid)) && <span>This field is required</span>}
-      </form>
+    <Div flexDirection='column'>
+      <Div justifyContent='space-between'>
+        <Button
+          onClick={() => { navigate(-1) }}
+          elementWidth={'20px'}
+        >
+          <AiOutlineArrowLeft size={20} />
+        </Button>
+        <form onSubmit={ handleSubmit(search) }>
+          <Div>
+            <h3>Pesquisar: </h3>
+            <Input
+            type='text'
+            placeholder='identificação da loja'
+            margin='10px 0 10px 5px'
+            {...register('uuid', { min: 1 })}
+            />
+            <Button
+              type="submit"
+              elementWidth='20px'
+              margin='10px 0'
+            >
+              <AiOutlineSearch/>
+            </Button>
+          </Div>
+          {(Boolean(errors.uuid)) && <span>This field is required</span>}
+        </form>
+      </Div>
       <br />
-      <h3>Lojas:</h3>
       <Table>
         <thead>
           <tr>
@@ -76,16 +77,16 @@ const Store = (): any => {
           {stores?.map((store, key) => {
             return (
               <tr key={key}>
-                <td>identificação: {store.uuid}</td>
-                <td>nome: {store.name}</td>
-                <td>peso: {store.address}</td>
+                <td>{store.uuid}</td>
+                <td>{store.name}</td>
+                <td>{store.address}</td>
                 <td><Link to={store.uuid}>Detalhes</Link></td>
               </tr>
             )
           })}
         </tbody>
       </Table>
-    </div>
+    </Div>
   )
 }
 

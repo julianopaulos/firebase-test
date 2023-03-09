@@ -1,27 +1,26 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
+import Div from '../../components/Div'
 
 const Home = (): any => {
   return (
-    <div>
+    <>
+      <Div justifyContent='space-around'>
         <h3>
-          Cadastrar produto:
-          <Link to={'product'}> Aqui </Link>
+          <Link to={'product'}> Cadastrar produto </Link>
         </h3>
         <h3>
-          Listar Produtos:
-          <Link to={'products'}> Aqui </Link>
+          <Link to={'products'}> Listar Produtos </Link>
         </h3>
         <h3>
-          Cadastrar loja:
-          <Link to={'store'}> Aqui </Link>
+          <Link to={'store'}> Cadastrar loja </Link>
         </h3>
         <h3>
-          Listar lojas:
-          <Link to={'stores'}> Aqui </Link>
+          <Link to={'stores'}> Listar lojas </Link>
         </h3>
-        <Outlet />
-    </div>
+      </Div>
+      <Outlet />
+    </>
   )
 }
 
