@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
-import { Link, useLoaderData, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useLoaderData, useNavigate } from 'react-router-dom'
 import { AiOutlineArrowLeft, AiOutlineLink, AiOutlineSearch } from 'react-icons/ai'
 
 import { getStore, indexStores, type StoreInterface } from '../../../firebase/collections/stores'
@@ -86,6 +86,7 @@ const Store = (): any => {
           })}
         </tbody>
       </Table>
+      <Outlet />
     </Div>
   )
 }

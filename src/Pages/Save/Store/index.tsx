@@ -8,6 +8,7 @@ import { type StoreInterface, saveStore } from '../../../firebase/collections/st
 import { v4 as uuidv4 } from 'uuid'
 import Input from '../../../components/Input'
 import Button from '../../../components/Button'
+import Div from '../../../components/Div'
 
 const Store = (): any => {
   const navigate = useNavigate()
@@ -27,10 +28,11 @@ const Store = (): any => {
   }
 
   return (
-    <div>
+    <Div flexDirection='column'>
       <Button
         onClick={() => { navigate(-1) }}
         elementWidth={'20px'}
+        margin='10px auto 10px 10px'
       >
         <AiOutlineArrowLeft size={20} />
       </Button>
@@ -45,7 +47,7 @@ const Store = (): any => {
         <br/>
         <Button type='submit' backgroundColor={'rgba(80, 170, 100, 1)'}>criar produto</Button>
       </form>
-    </div>
+    </Div>
   )
 }
 

@@ -10,6 +10,7 @@ import { type StoreInterface, indexStores } from '../../../firebase/collections/
 import Input from '../../../components/Input'
 import Button from '../../../components/Button/index'
 import Select from '../../../components/Select'
+import Div from '../../../components/Div'
 
 const Product = (): any => {
   const { register, handleSubmit, formState: { errors } } = useForm<ProductInterface>({
@@ -39,16 +40,17 @@ const Product = (): any => {
   }
 
   return (
-    <div className="App">
+    <Div flexDirection='column'>
       <Button
         onClick={() => { navigate(-1) }}
         elementWidth={'20px'}
+        margin='10px auto 10px 10px'
       >
         <AiOutlineArrowLeft size={20} />
       </Button>
       <br/>
       <form id="form" onSubmit={ handleSubmit(save) }>
-        <Input type="text" {...register('uuid', { required: true })} disabled />
+        <Input type="text" defaultValue={uuidv4()} {...register('uuid', { required: true })} disabled />
         <br/>
         <Select id="store" {...register('storeId', { required: true })}>
           <option></option>
@@ -58,21 +60,21 @@ const Product = (): any => {
         </Select>
         {(Boolean(errors.storeId)) && <span>This field is required</span>}
         <br/>
-        <Input type="text" placeholder='name' {...register('name', { required: true })} />
+        <Input type="text" placeholder='nome do produto' {...register('name', { required: true })} />
         {(Boolean(errors.name)) && <span>This field is required</span>}
         <br/>
-        <Input type="number" {...register('weight', { required: true, min: 1 })} />
+        <Input type="number" placeholder='peso do produto' {...register('weight', { required: true, min: 0.1 })} />
         {(Boolean(errors.weight)) && <span>This field is required</span>}
         <br/>
-        <Input type="number" {...register('price', { required: true, min: 1 })} />
+        <Input type="number" placeholder='preço do produto' {...register('price', { required: true, min: 0.1 })} />
         {(Boolean(errors.price)) && <span>This field is required</span>}
         <br/>
-        <Input type="number" {...register('stock', { required: true, min: 0 })} />
+        <Input type="number" placeholder='estoque do produto' {...register('stock', { required: true, min: 0 })} />
         {(Boolean(errors.stock)) && <span>This field is required</span>}
         <br/>
         <Button type='submit' backgroundColor={'rgba(80, 170, 100, 1)'}>criar produto</Button>
       </form>
-    </div>
+    </Div>
   )
 }
 

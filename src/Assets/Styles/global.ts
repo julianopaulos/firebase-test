@@ -19,5 +19,10 @@ export default createGlobalStyle<HtmlHTMLAttributes<HTMLElement>>`
 
   a {
     text-decoration: none;
+    transition: .4s;
+  }
+
+  a:hover {
+    opacity: 0.6;
   }
 `

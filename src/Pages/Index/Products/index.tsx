@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useNavigate, Link, useLoaderData } from 'react-router-dom'
+import { useNavigate, Link, useLoaderData, Outlet } from 'react-router-dom'
 import { type SubmitHandler, useForm } from 'react-hook-form'
-import { AiOutlineArrowLeft, AiOutlineLink, AiOutlineSearch } from 'react-icons/ai'
+import { AiOutlineArrowLeft, AiOutlineDelete, AiOutlineEye, AiOutlineLink, AiOutlineSearch } from 'react-icons/ai'
 
-import { indexProducts, getProduct, type ProductInterface } from '../../../firebase/collections/products'
+import { indexProducts, getProduct, deleteProduct, type ProductInterface } from '../../../firebase/collections/products'
 
 import Button from '../../../components/Button'
 import Input from '../../../components/Input'
@@ -31,6 +31,17 @@ const Product = (): any => {
 
     event?.target.reset()
     reset()
+  }
+
+  const removeProduct = async (uuid: string): Promise<void> => {
+    if (confirm(`deseja mesmo excluir o produto ${uuid}?`)) {
+      await deleteProduct(uuid)
+        .then(() => {
+          setProducts(products.filter(product => product.uuid !== uuid))
+          alert('produto excluido com sucesso!')
+        })
+        .catch((e: string) => { alert(`erro ao excluir produto:\n${e}`) })
+    }
   }
 
   return (
@@ -79,12 +90,18 @@ const Product = (): any => {
                 <td>{product.storeId}</td>
                 <td>{product.uuid}</td>
                 <td>{product.name}</td>
-                <td><Link to={product.uuid}>Detalhes</Link></td>
+                <td>
+                    <Div justifyContent='space-around'>
+                        <Link to={product.uuid} title='Detalhes'><AiOutlineEye size={23} /></Link>
+                        <Link to='' onClick={async () => { await removeProduct(product.uuid) }} title='Excluir Produto'><AiOutlineDelete size={23} /></Link>
+                    </Div>
+                </td>
               </tr>
             )
           })}
         </tbody>
       </Table>
+      <Outlet />
     </Div>
   )
 }

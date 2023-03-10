@@ -28,18 +28,16 @@ const Router = createBrowserRouter([
         path: 'products',
         element: <Products />,
         errorElement: <NotFound />,
-        loader: indexProducts,
-        children: [
-          {
-            path: 'products/:uuid',
-            element: <ProductDetails />,
-            errorElement: <NotFound />,
-            loader: async ({ params }) => {
-              const uuid: string = params.uuid ?? ''
-              return await getProduct(uuid)
-            }
-          }
-        ]
+        loader: indexProducts
+      },
+      {
+        path: 'products/:uuid',
+        element: <ProductDetails />,
+        errorElement: <NotFound />,
+        loader: async ({ params }) => {
+          const uuid: string = params.uuid ?? ''
+          return await getProduct(uuid)
+        }
       },
       {
         path: 'store',
@@ -50,18 +48,16 @@ const Router = createBrowserRouter([
         path: 'stores',
         element: <Stores />,
         errorElement: <NotFound />,
-        loader: indexStores,
-        children: [
-          {
-            path: '/stores/:uuid',
-            element: <StoreDetails />,
-            errorElement: <NotFound />,
-            loader: async ({ params }) => {
-              const uuid: string = params.uuid ?? ''
-              return await getStore(uuid)
-            }
-          }
-        ]
+        loader: indexStores
+      },
+      {
+        path: '/stores/:uuid',
+        element: <StoreDetails />,
+        errorElement: <NotFound />,
+        loader: async ({ params }) => {
+          const uuid: string = params.uuid ?? ''
+          return await getStore(uuid)
+        }
       }
     ]
   }

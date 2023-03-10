@@ -6,16 +6,18 @@ import { type StoreInterface } from '../../../firebase/collections/stores'
 
 import Button from '../../../components/Button'
 import Table from '../../../components/Table'
+import Div from '../../../components/Div'
 
 const StoreDetails = (): any => {
   const stores = useLoaderData() as StoreInterface[]
   const navigate = useNavigate()
 
   return (
-    <div className="App">
+    <Div flexDirection='column'>
       <Button
         onClick={() => { navigate(-1) }}
         elementWidth={'20px'}
+        margin='10px auto 10px 10px'
       >
         <AiOutlineArrowLeft size={20} />
       </Button>
@@ -39,7 +41,7 @@ const StoreDetails = (): any => {
           })}
         </tbody>
       </Table>
-    </div>
+    </Div>
   )
 }
 

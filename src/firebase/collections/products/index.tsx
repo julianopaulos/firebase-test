@@ -34,9 +34,14 @@ const indexProducts = async (): Promise<any> => {
   return productsDocs.map(product => product.data() as Product)
 }
 
+const deleteProduct = async (uuid: string): Promise<void> => {
+  await collection.doc(uuid).delete()
+}
+
 export {
   saveProduct,
   getProduct,
   indexProducts,
+  deleteProduct,
   type Product as ProductInterface
 }

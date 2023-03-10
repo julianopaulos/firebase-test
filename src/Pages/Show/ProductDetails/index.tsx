@@ -6,16 +6,18 @@ import { type ProductInterface } from '../../../firebase/collections/products'
 
 import Button from '../../../components/Button'
 import Table from '../../../components/Table'
+import Div from '../../../components/Div/index'
 
 const ProductDetails = (): any => {
   const products = useLoaderData() as ProductInterface[]
   const navigate = useNavigate()
 
   return (
-    <div className="App">
+    <Div flexDirection='column'>
       <Button
         onClick={() => { navigate(-1) }}
         elementWidth={'20px'}
+        margin='10px auto 10px 10px'
       >
         <AiOutlineArrowLeft size={20} />
       </Button>
@@ -45,7 +47,7 @@ const ProductDetails = (): any => {
           })}
         </tbody>
       </Table>
-    </div>
+    </Div>
   )
 }
 
