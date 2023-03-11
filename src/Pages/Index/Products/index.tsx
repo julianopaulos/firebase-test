@@ -91,9 +91,16 @@ const Product = (): any => {
                 <td>{product.uuid}</td>
                 <td>{product.name}</td>
                 <td>
-                    <Div justifyContent='space-around'>
-                        <Link to={product.uuid} title='Detalhes'><AiOutlineEye size={23} /></Link>
-                        <Link to='' onClick={async () => { await removeProduct(product.uuid) }} title='Excluir Produto'><AiOutlineDelete size={23} /></Link>
+                    <Div justifyContent='space-around' alignItems='baseline'>
+                      <Link to={product.uuid} title='Detalhes'>
+                        <AiOutlineEye size={20} />
+                      </Link>
+                      <AiOutlineDelete
+                        size={20}
+                        cursor='pointer'
+                        onClick={async () => { await removeProduct(product.uuid) }}
+                        title='Excluir Produto'
+                      />
                     </Div>
                 </td>
               </tr>

@@ -1,4 +1,5 @@
 import { db } from '../../config'
+import { indexProducts, type ProductInterface } from '../products'
 const collection = db.collection('stores')
 
 interface Store {
@@ -31,9 +32,21 @@ const indexStores = async (): Promise<any> => {
   return storesDocs.map(product => product.data() as Store)
 }
 
+const deleteStore = async (uuid: string): Promise<void> => {
+  const allProducts: ProductInterface[] = await indexProducts()
+  allProducts.forEach(product => {
+    if (product.storeId === uuid) {
+      void db.collection('products').doc(product.uuid).delete()
+    }
+  })
+
+  await collection.doc(uuid).delete()
+}
+
 export {
   saveStore,
   getStore,
   indexStores,
+  deleteStore,
   type Store as StoreInterface
 }

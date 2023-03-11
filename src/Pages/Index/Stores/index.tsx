@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { Link, Outlet, useLoaderData, useNavigate } from 'react-router-dom'
-import { AiOutlineArrowLeft, AiOutlineLink, AiOutlineSearch } from 'react-icons/ai'
+import { AiOutlineArrowLeft, AiOutlineDelete, AiOutlineEye, AiOutlineLink, AiOutlineSearch } from 'react-icons/ai'
 
-import { getStore, indexStores, type StoreInterface } from '../../../firebase/collections/stores'
+import { deleteStore, getStore, indexStores, type StoreInterface } from '../../../firebase/collections/stores'
 
 import Button from '../../../components/Button'
 import Input from '../../../components/Input'
@@ -32,6 +32,17 @@ const Store = (): any => {
 
     event?.target.reset()
     reset()
+  }
+
+  const removeStore = async (uuid: string): Promise<void> => {
+    if (confirm(`deseja mesmo excluir a loja ${uuid}?`)) {
+      await deleteStore(uuid)
+        .then(() => {
+          setStores(stores.filter(store => store.uuid !== uuid))
+          alert('loja excluida com sucesso!')
+        })
+        .catch((e: string) => { alert(`erro ao excluir loja:\n${e}`) })
+    }
   }
 
   return (
@@ -69,7 +80,6 @@ const Store = (): any => {
           <tr>
             <th>identificação da loja</th>
             <th>nome da loja</th>
-            <th>endereço da loja</th>
             <th><AiOutlineLink /></th>
           </tr>
         </thead>
@@ -79,8 +89,19 @@ const Store = (): any => {
               <tr key={key}>
                 <td>{store.uuid}</td>
                 <td>{store.name}</td>
-                <td>{store.address}</td>
-                <td><Link to={store.uuid}>Detalhes</Link></td>
+                <td>
+                  <Div justifyContent='space-around' alignItems='baseline'>
+                    <Link to={store.uuid} title='Detalhes'>
+                      <AiOutlineEye size={20} />
+                    </Link>
+                    <AiOutlineDelete
+                      size={20}
+                      cursor='pointer'
+                      onClick={async () => { await removeStore(store.uuid) }}
+                      title='Excluir Loja'
+                    />
+                  </Div>
+                </td>
               </tr>
             )
           })}
