@@ -13,11 +13,11 @@ const StyledInput = styled.input<StyleProps>`
   padding: 10px 15px;
   background-color: rgba(240, 240, 240, 1);
   border: none;
-  border-radius: 3px;
-  border-top-right-radius: ${(p: StyleProps) => p.borderTopRightRadius ?? 'inherit'};
-  border-bottom-right-radius: ${(p: StyleProps) => p.borderBottomRightRadius ?? 'inherit'};
-  height: ${(p: StyleProps) => p.elementHeight ?? '15px'};
-  width: ${(p: StyleProps) => p.elementWidth ?? '200px'};
+  border-radius: 5px;
+  border-top-right-radius: ${(p: StyleProps) => p.borderTopRightRadius ?? '5px'};
+  border-bottom-right-radius: ${(p: StyleProps) => p.borderBottomRightRadius ?? '5px'};
+  height: ${(p: StyleProps) => p.elementHeight ?? '20px'};
+  width: ${(p: StyleProps) => p.elementWidth ?? '250px'};
   margin: ${(p: StyleProps) => p.margin ?? '10px'};
 `
 

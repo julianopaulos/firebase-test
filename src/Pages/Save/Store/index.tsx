@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Input from '../../../components/Input'
 import Button from '../../../components/Button'
 import Div from '../../../components/Div'
+import Form from '../../../components/Form'
 
 const Store = (): any => {
   const navigate = useNavigate()
@@ -36,17 +37,17 @@ const Store = (): any => {
       >
         <AiOutlineArrowLeft size={20} />
       </Button>
-      <form id="form" onSubmit={ handleSubmit(save) }>
-        <Input type="text" disabled {...register('uuid', { required: true })}/>
+      <Form onSubmit={ handleSubmit(save) }>
+        <Input margin='0' type="text" disabled {...register('uuid', { required: true })}/>
         <br/>
-        <Input type="text" placeholder='name' {...register('name', { required: true })} />
+        <Input margin='0' type="text" placeholder='name' {...register('name', { required: true })} />
         {(Boolean(errors.name)) && <span>This field is required</span>}
         <br/>
-        <Input type="text" {...register('address', { required: true })} />
+        <Input margin='0' type="text" {...register('address', { required: true })} />
         {(Boolean(errors.address)) && <span>This field is required</span>}
         <br/>
         <Button type='submit' backgroundColor={'rgba(80, 170, 100, 1)'}>criar produto</Button>
-      </form>
+      </Form>
     </Div>
   )
 }

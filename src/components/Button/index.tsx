@@ -19,11 +19,11 @@ const StyledButton = styled.button<StyleProps>`
   padding: 10px 15px;
   font-size: 1em;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
-  border-top-left-radius: ${(p: StyleProps) => p.borderTopLeftRadius ?? 'inherit'};
-  border-bottom-left-radius: ${(p: StyleProps) => p.borderBottomLeftRadius ?? 'inherit'};
-  height: ${(p: StyleProps) => p.elementHeight ?? '15px'};
+  border-top-left-radius: ${(p: StyleProps) => p.borderTopLeftRadius ?? '5px'};
+  border-bottom-left-radius: ${(p: StyleProps) => p.borderBottomLeftRadius ?? '5px'};
+  height: ${(p: StyleProps) => p.elementHeight ?? '20px'};
   width: ${(p: StyleProps) => p.elementWidth ?? '200px'};
   color: ${(p: StyleProps) => p.color ?? 'black'};
   background-color: ${(p: StyleProps) => p.backgroundColor ?? 'rgba(200, 200, 200, 1)'};
@@ -31,7 +31,7 @@ const StyledButton = styled.button<StyleProps>`
   transition: .3s;
 
   &:hover {
-    opacity: .8;
+    opacity: .6;
   }
 `
 

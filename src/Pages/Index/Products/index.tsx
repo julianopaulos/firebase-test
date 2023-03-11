@@ -49,7 +49,7 @@ const Product = (): any => {
       <Div justifyContent='space-between'>
         <Button
           onClick={() => { navigate(-1) }}
-          elementWidth={'20px'}
+          elementWidth={'25px'}
         >
           <AiOutlineArrowLeft size={20} />
         </Button>
@@ -60,12 +60,16 @@ const Product = (): any => {
             type='text'
             placeholder='identificação do produto'
             margin='10px 0 10px 5px'
+            borderTopRightRadius='inherit'
+            borderBottomRightRadius='inherit'
             {...register('uuid', { min: 1 })}
             />
             <Button
               type="submit"
-              elementWidth='20px'
+              elementWidth='25px'
               margin='10px 0'
+              borderTopLeftRadius='inherit'
+              borderBottomLeftRadius='inherit'
             >
               <AiOutlineSearch/>
             </Button>
@@ -91,17 +95,17 @@ const Product = (): any => {
                 <td>{product.uuid}</td>
                 <td>{product.name}</td>
                 <td>
-                    <Div justifyContent='space-around' alignItems='baseline'>
-                      <Link to={product.uuid} title='Detalhes'>
-                        <AiOutlineEye size={20} />
-                      </Link>
-                      <AiOutlineDelete
-                        size={20}
-                        cursor='pointer'
-                        onClick={async () => { await removeProduct(product.uuid) }}
-                        title='Excluir Produto'
-                      />
-                    </Div>
+                  <Div justifyContent='space-around' alignItems='baseline'>
+                    <Link to={product.uuid} title='Detalhes'>
+                      <AiOutlineEye size={20} />
+                    </Link>
+                    <AiOutlineDelete
+                      size={20}
+                      cursor='pointer'
+                      onClick={async () => { await removeProduct(product.uuid) }}
+                      title='Excluir Produto'
+                    />
+                  </Div>
                 </td>
               </tr>
             )

@@ -50,23 +50,27 @@ const Store = (): any => {
       <Div justifyContent='space-between'>
         <Button
           onClick={() => { navigate(-1) }}
-          elementWidth={'20px'}
+          elementWidth={'25px'}
         >
           <AiOutlineArrowLeft size={20} />
         </Button>
         <form onSubmit={ handleSubmit(search) }>
           <Div>
-            <h3>Pesquisar: </h3>
+            <h3>Pesquisar:</h3>
             <Input
             type='text'
             placeholder='identificação da loja'
             margin='10px 0 10px 5px'
+            borderTopRightRadius='inherit'
+            borderBottomRightRadius='inherit'
             {...register('uuid', { min: 1 })}
             />
             <Button
               type="submit"
-              elementWidth='20px'
+              elementWidth='25px'
               margin='10px 0'
+              borderTopLeftRadius='inherit'
+              borderBottomLeftRadius='inherit'
             >
               <AiOutlineSearch/>
             </Button>

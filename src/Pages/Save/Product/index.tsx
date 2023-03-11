@@ -11,6 +11,7 @@ import Input from '../../../components/Input'
 import Button from '../../../components/Button/index'
 import Select from '../../../components/Select'
 import Div from '../../../components/Div'
+import Form from '../../../components/Form'
 
 const Product = (): any => {
   const { register, handleSubmit, formState: { errors } } = useForm<ProductInterface>({
@@ -49,10 +50,10 @@ const Product = (): any => {
         <AiOutlineArrowLeft size={20} />
       </Button>
       <br/>
-      <form id="form" onSubmit={ handleSubmit(save) }>
-        <Input type="text" defaultValue={uuidv4()} {...register('uuid', { required: true })} disabled />
+      <Form onSubmit={ handleSubmit(save) }>
+        <Input margin='0' type="text" defaultValue={uuidv4()} {...register('uuid', { required: true })} disabled />
         <br/>
-        <Select id="store" {...register('storeId', { required: true })}>
+        <Select placeholder='loja pertencente' margin='0' {...register('storeId', { required: true })}>
           <option></option>
           {stores.map((store, key) => (
             <option key={key} value={store.uuid}>{store.name}</option>
@@ -60,20 +61,20 @@ const Product = (): any => {
         </Select>
         {(Boolean(errors.storeId)) && <span>This field is required</span>}
         <br/>
-        <Input type="text" placeholder='nome do produto' {...register('name', { required: true })} />
+        <Input margin='0' type="text" placeholder='nome do produto' {...register('name', { required: true })} />
         {(Boolean(errors.name)) && <span>This field is required</span>}
         <br/>
-        <Input type="number" placeholder='peso do produto' {...register('weight', { required: true, min: 0.1 })} />
+        <Input margin='0' type="number" placeholder='peso do produto' {...register('weight', { required: true, min: 0.1 })} />
         {(Boolean(errors.weight)) && <span>This field is required</span>}
         <br/>
-        <Input type="number" placeholder='preço do produto' {...register('price', { required: true, min: 0.1 })} />
+        <Input margin='0' type="number" placeholder='preço do produto' {...register('price', { required: true, min: 0.1 })} />
         {(Boolean(errors.price)) && <span>This field is required</span>}
         <br/>
-        <Input type="number" placeholder='estoque do produto' {...register('stock', { required: true, min: 0 })} />
+        <Input margin='0' type="number" placeholder='estoque do produto' {...register('stock', { required: true, min: 0 })} />
         {(Boolean(errors.stock)) && <span>This field is required</span>}
         <br/>
         <Button type='submit' backgroundColor={'rgba(80, 170, 100, 1)'}>criar produto</Button>
-      </form>
+      </Form>
     </Div>
   )
 }

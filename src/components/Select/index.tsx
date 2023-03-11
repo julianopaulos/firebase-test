@@ -9,11 +9,12 @@ interface StyleProps extends SelectHTMLAttributes<HTMLSelectElement> {
 }
 
 const StyledSelect = styled.select<StyleProps>`
-  width: 200px;
+  width: 250px;
+  height: 20px;
   padding: 10px 15px;
   font-size: 1em;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
   color: ${(p: StyleProps) => p.color ?? 'black'};
   background-color: ${(p: StyleProps) => p.backgroundColor ?? 'rgba(240, 240, 240, 1)'};
