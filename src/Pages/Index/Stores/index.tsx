@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { Link, Outlet, useLoaderData, useNavigate } from 'react-router-dom'
-import { AiOutlineArrowLeft, AiOutlineDelete, AiOutlineEye, AiOutlineLink, AiOutlineSearch } from 'react-icons/ai'
+import { AiOutlineArrowLeft, AiOutlineDelete, AiOutlineEdit, AiOutlineEye, AiOutlineLink, AiOutlineSearch } from 'react-icons/ai'
 
 import { deleteStore, getStore, indexStores, type StoreInterface } from '../../../firebase/collections/stores'
 
@@ -97,6 +97,9 @@ const Store = (): any => {
                   <Div justifyContent='space-around' alignItems='baseline'>
                     <Link to={store.uuid} title='Detalhes'>
                       <AiOutlineEye size={20} />
+                    </Link>
+                    <Link to={`${store.uuid}/patch`}>
+                      <AiOutlineEdit size={20} title='Detalhes' />
                     </Link>
                     <AiOutlineDelete
                       size={20}

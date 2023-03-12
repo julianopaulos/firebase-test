@@ -14,11 +14,7 @@ import Div from '../../../components/Div'
 import Form from '../../../components/Form'
 
 const Product = (): any => {
-  const { register, handleSubmit, formState: { errors } } = useForm<ProductInterface>({
-    defaultValues: {
-      uuid: uuidv4()
-    }
-  })
+  const { register, handleSubmit, formState: { errors } } = useForm<ProductInterface>()
 
   const [stores, setStores] = useState<StoreInterface[]>([])
 
@@ -33,6 +29,8 @@ const Product = (): any => {
   }, [])
 
   const save: SubmitHandler<ProductInterface> = async (data, event): Promise<void> => {
+    data.uuid = uuidv4()
+
     await saveProduct(data)
       .then(() => { alert('produto salvo com sucesso') })
       .catch((e: string) => { alert(`erro ao salvar produto:\n${e}`) })
@@ -51,10 +49,8 @@ const Product = (): any => {
       </Button>
       <br/>
       <Form onSubmit={ handleSubmit(save) }>
-        <Input margin='0' type="text" defaultValue={uuidv4()} {...register('uuid', { required: true })} disabled />
-        <br/>
         <Select placeholder='loja pertencente' margin='0' {...register('storeId', { required: true })}>
-          <option></option>
+          <option value=''>loja pertencente</option>
           {stores.map((store, key) => (
             <option key={key} value={store.uuid}>{store.name}</option>
           ))}

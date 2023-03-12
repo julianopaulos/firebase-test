@@ -14,7 +14,7 @@ export default createGlobalStyle<HtmlHTMLAttributes<HTMLElement>>`
   }
 
   body {
-    background-color: rgba(220, 220, 220, 1);
+    background-color: rgba(240, 240, 240, 1);
   }
 
   a {

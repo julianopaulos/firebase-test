@@ -12,6 +12,8 @@ import Products from './Pages/Index/Products'
 import ProductDetails from './Pages/Show/ProductDetails'
 import Stores from './Pages/Index/Stores'
 import StoreDetails from './Pages/Show/StoreDetails'
+import UpdateProduct from './Pages/Update/UpdateProduct'
+import UpdateStore from './Pages/Update/UpdateStore'
 
 const Router = createBrowserRouter([
   {
@@ -40,6 +42,15 @@ const Router = createBrowserRouter([
         }
       },
       {
+        path: 'products/:uuid/patch',
+        element: <UpdateProduct />,
+        errorElement: <NotFound />,
+        loader: async ({ params }) => {
+          const uuid: string = params.uuid ?? ''
+          return await getProduct(uuid)
+        }
+      },
+      {
         path: 'store',
         element: <Store />,
         errorElement: <NotFound />
@@ -53,6 +64,15 @@ const Router = createBrowserRouter([
       {
         path: '/stores/:uuid',
         element: <StoreDetails />,
+        errorElement: <NotFound />,
+        loader: async ({ params }) => {
+          const uuid: string = params.uuid ?? ''
+          return await getStore(uuid)
+        }
+      },
+      {
+        path: '/stores/:uuid/patch',
+        element: <UpdateStore />,
         errorElement: <NotFound />,
         loader: async ({ params }) => {
           const uuid: string = params.uuid ?? ''

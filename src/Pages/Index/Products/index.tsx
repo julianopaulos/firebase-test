@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, Link, useLoaderData, Outlet } from 'react-router-dom'
 import { type SubmitHandler, useForm } from 'react-hook-form'
-import { AiOutlineArrowLeft, AiOutlineDelete, AiOutlineEye, AiOutlineLink, AiOutlineSearch } from 'react-icons/ai'
+import { AiOutlineArrowLeft, AiOutlineDelete, AiOutlineEdit, AiOutlineEye, AiOutlineLink, AiOutlineSearch } from 'react-icons/ai'
 
 import { indexProducts, getProduct, deleteProduct, type ProductInterface } from '../../../firebase/collections/products'
 
@@ -96,8 +96,11 @@ const Product = (): any => {
                 <td>{product.name}</td>
                 <td>
                   <Div justifyContent='space-around' alignItems='baseline'>
-                    <Link to={product.uuid} title='Detalhes'>
-                      <AiOutlineEye size={20} />
+                    <Link to={product.uuid}>
+                      <AiOutlineEye size={20} title='Detalhes' />
+                    </Link>
+                    <Link to={`${product.uuid}/patch`}>
+                      <AiOutlineEdit size={20} title='Detalhes' />
                     </Link>
                     <AiOutlineDelete
                       size={20}

@@ -17,7 +17,7 @@ const StyledSelect = styled.select<StyleProps>`
   border-radius: 5px;
   cursor: pointer;
   color: ${(p: StyleProps) => p.color ?? 'black'};
-  background-color: ${(p: StyleProps) => p.backgroundColor ?? 'rgba(240, 240, 240, 1)'};
+  background-color: ${(p: StyleProps) => p.backgroundColor ?? 'white'};
   margin: ${(p: StyleProps) => p.margin ?? '10px'};
   transition: .3s;
 

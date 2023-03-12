@@ -11,7 +11,7 @@ interface StyleProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const StyledInput = styled.input<StyleProps>`
   padding: 10px 15px;
-  background-color: rgba(240, 240, 240, 1);
+  background-color: white;
   border: none;
   border-radius: 5px;
   border-top-right-radius: ${(p: StyleProps) => p.borderTopRightRadius ?? '5px'};

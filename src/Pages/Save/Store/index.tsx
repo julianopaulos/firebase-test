@@ -14,16 +14,14 @@ import Form from '../../../components/Form'
 const Store = (): any => {
   const navigate = useNavigate()
 
-  const { register, handleSubmit, formState: { errors } } = useForm<StoreInterface>({
-    defaultValues: {
-      uuid: uuidv4()
-    }
-  })
+  const { register, handleSubmit, formState: { errors } } = useForm<StoreInterface>()
 
   const save: SubmitHandler<StoreInterface> = async (data, event): Promise<void> => {
+    data.uuid = uuidv4()
+
     await saveStore(data)
-      .then(() => { alert('produto salvo com sucesso') })
-      .catch((e: string) => { alert(`erro ao salvar produto:\n${e}`) })
+      .then(() => { alert('loja salva com sucesso') })
+      .catch((e: string) => { alert(`erro ao salvar loja:\n${e}`) })
 
     event?.target.reset()
   }
@@ -38,12 +36,10 @@ const Store = (): any => {
         <AiOutlineArrowLeft size={20} />
       </Button>
       <Form onSubmit={ handleSubmit(save) }>
-        <Input margin='0' type="text" disabled {...register('uuid', { required: true })}/>
-        <br/>
-        <Input margin='0' type="text" placeholder='name' {...register('name', { required: true })} />
+        <Input margin='0' type="text" placeholder='nome da loja' {...register('name', { required: true })} />
         {(Boolean(errors.name)) && <span>This field is required</span>}
         <br/>
-        <Input margin='0' type="text" {...register('address', { required: true })} />
+        <Input margin='0' type="text" placeholder='endereço da loja' {...register('address', { required: true })} />
         {(Boolean(errors.address)) && <span>This field is required</span>}
         <br/>
         <Button type='submit' backgroundColor={'rgba(80, 170, 100, 1)'}>criar produto</Button>
