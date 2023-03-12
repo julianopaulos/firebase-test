@@ -17,12 +17,12 @@ export default createGlobalStyle<HtmlHTMLAttributes<HTMLElement>>`
     background-color: rgba(240, 240, 240, 1);
   }
 
-  a {
+  a, svg {
     text-decoration: none;
     transition: .4s;
   }
 
-  a:hover {
+  a:hover, svg:hover {
     opacity: 0.6;
   }
 `

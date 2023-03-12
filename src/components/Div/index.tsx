@@ -2,6 +2,8 @@ import React, { forwardRef, type HtmlHTMLAttributes, type ForwardedRef } from 'r
 import styled from 'styled-components'
 
 interface StyleProps extends HtmlHTMLAttributes<HTMLDivElement> {
+  elementHeight?: string
+  elementWidth?: string
   display?: string
   alignItems?: string
   justifyContent?: string
@@ -14,6 +16,8 @@ const StyledDiv = styled.div<StyleProps>`
   width: 100%;
   margin: 0;
   padding: 0;
+  height: ${(p: StyleProps) => p.elementHeight ?? 'auto'};
+  width: ${(p: StyleProps) => p.elementWidth ?? '100%'};
   display: ${(p: StyleProps) => p.display ?? 'flex'};
   align-items: ${(p: StyleProps) => p.alignItems ?? 'center'};
   justify-content: ${(p: StyleProps) => p.justifyContent ?? 'flex-start'};
