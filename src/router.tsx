@@ -14,6 +14,7 @@ import Stores from './Pages/Index/Stores'
 import StoreDetails from './Pages/Show/StoreDetails'
 import UpdateProduct from './Pages/Update/UpdateProduct'
 import UpdateStore from './Pages/Update/UpdateStore'
+import Register from './Pages/Register'
 
 const Router = createBrowserRouter([
   {
@@ -78,6 +79,11 @@ const Router = createBrowserRouter([
           const uuid: string = params.uuid ?? ''
           return await getStore(uuid)
         }
+      },
+      {
+        path: '/register',
+        element: <Register />,
+        errorElement: <NotFound />
       }
     ]
   }

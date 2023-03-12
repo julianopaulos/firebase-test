@@ -6,6 +6,9 @@ const Home = (): any => {
   return (
     <>
       <Div justifyContent='space-around'>
+      <h3>
+          <Link to={'register'}> Cadastrar Usuário </Link>
+        </h3>
         <h3>
           <Link to={'product'}> Cadastrar produto </Link>
         </h3>
