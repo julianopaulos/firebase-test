@@ -10,6 +10,12 @@ interface StyleProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const StyledInput = styled.input<StyleProps>`
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover, 
+  &:-webkit-autofill:focus, 
+  &:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+  }
   padding: 10px 15px;
   background-color: white;
   border: none;
