@@ -6,7 +6,7 @@ import Button from '../../components/Button'
 import Div from '../../components/Div'
 import Form from '../../components/Form'
 import Input from '../../components/Input'
-import { createNewUser, type UserInterface } from '../../firebase/collections/users'
+import { createNewUser, type UserInterface, type AuthError } from '../../firebase/collections/users'
 
 const Register = (): any => {
   const navigate = useNavigate()
@@ -14,14 +14,13 @@ const Register = (): any => {
   const { register, handleSubmit, formState: { errors } } = useForm<UserInterface>()
 
   const save: SubmitHandler<UserInterface> = async (data: UserInterface, event): Promise<void> => {
-    console.log('data', data)
     await createNewUser(data)
       .then(resp => {
         console.log('resp', resp)
         alert('perfil criado com sucesso!')
       })
-      .catch((e: string) => {
-        alert(`erro ao cadastrar \n${e}`)
+      .catch((e: AuthError) => {
+        alert(`erro ao cadastrar \n${e.message}`)
       })
     event?.target.reset()
   }
@@ -44,7 +43,7 @@ const Register = (): any => {
                 required: true,
                 pattern: {
                   value: /\S+@\S+\.\S+/,
-                  message: 'Entered value does not match email format'
+                  message: 'o email inserido é inválido'
                 }
               }
             )
@@ -61,7 +60,7 @@ const Register = (): any => {
                 required: 'required',
                 minLength: {
                   value: 5,
-                  message: 'min length is 5'
+                  message: 'número mínimo de caracteres é 5'
                 }
               }
             )

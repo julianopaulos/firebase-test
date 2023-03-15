@@ -1,8 +1,10 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import { getAuth, type AuthError, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
 
 interface User {
   email: string
   password: string
+  phoneNumber?: string
+  photoURL?: string
 }
 
 const auth = getAuth()
@@ -10,7 +12,6 @@ const auth = getAuth()
 const createNewUser = async ({ email, password }: User): Promise<any> => {
   const user = await createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => userCredential.user)
-    .catch((error) => error)
 
   return user
 }
@@ -18,7 +19,6 @@ const createNewUser = async ({ email, password }: User): Promise<any> => {
 const loginUser = async ({ email, password }: User): Promise<any> => {
   const user = await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => userCredential.user)
-    .catch((error) => error)
 
   return user
 }
@@ -34,5 +34,6 @@ onAuthStateChanged(auth, (user) => {
 export {
   createNewUser,
   loginUser,
-  type User as UserInterface
+  type User as UserInterface,
+  type AuthError
 }
