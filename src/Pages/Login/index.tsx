@@ -6,21 +6,22 @@ import Button from '../../components/Button'
 import Div from '../../components/Div'
 import Form from '../../components/Form'
 import Input from '../../components/Input'
-import { createNewUser, type UserInterface, type AuthError } from '../../firebase/collections/users'
+import { loginUser, type UserInterface, type AuthError } from '../../firebase/collections/users'
 
-const Register = (): any => {
+const Login = (): any => {
   const navigate = useNavigate()
 
   const { register, handleSubmit, formState: { errors } } = useForm<UserInterface>()
 
-  const save: SubmitHandler<UserInterface> = async (data: UserInterface, event): Promise<void> => {
-    await createNewUser(data)
+  const login: SubmitHandler<UserInterface> = async (data: UserInterface, event): Promise<void> => {
+    await loginUser(data)
       .then(resp => {
         console.log('resp', resp)
-        alert('perfil criado com sucesso!')
+        alert('autenticado com sucesso!')
       })
       .catch((e: AuthError) => {
-        alert(`erro ao cadastrar \n${e.message}`)
+        console.log('error', e.stack)
+        alert(`erro ao entrar \n${e.message}`)
       })
 
     event?.target.reset()
@@ -36,7 +37,7 @@ const Register = (): any => {
         <AiOutlineArrowLeft size={20} />
       </Button>
       <br/>
-      <Form onSubmit={handleSubmit(save)}>
+      <Form onSubmit={handleSubmit(login)}>
         <Input type='email' placeholder='email' {
             ...register(
               'email',
@@ -72,11 +73,11 @@ const Register = (): any => {
          backgroundColor='rgba(60, 50, 200, 1)'
          color='white'
         >
-          Cadastrar
+          Entrar
         </Button>
       </Form>
     </Div>
   )
 }
 
-export default Register
+export default Login

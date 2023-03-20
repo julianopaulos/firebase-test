@@ -15,6 +15,7 @@ import StoreDetails from './Pages/Show/StoreDetails'
 import UpdateProduct from './Pages/Update/UpdateProduct'
 import UpdateStore from './Pages/Update/UpdateStore'
 import Register from './Pages/Register'
+import Login from './Pages/Login'
 
 const Router = createBrowserRouter([
   {
@@ -83,6 +84,11 @@ const Router = createBrowserRouter([
       {
         path: '/user/register',
         element: <Register />,
+        errorElement: <NotFound />
+      },
+      {
+        path: '/user/login',
+        element: <Login />,
         errorElement: <NotFound />
       }
     ]
