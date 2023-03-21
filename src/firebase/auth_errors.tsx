@@ -1,0 +1,31 @@
+const firebaseAuthErrorCodes: any = {
+  'auth/weak-password': 'Senha fraca, digite pelo menos 6 caracteres',
+  'auth/timeout': 'tempo limite excedido',
+  'auth/admin-restricted-operation': 'operação reservada a administradores',
+  'auth/code-expired': 'código de autenticação expirado',
+  'auth/cors-unsupported': 'erro na politica de cors',
+  'auth/credential-already-in-use': 'credenciais já em uso em outro lugar/máquina',
+  'auth/email-already-in-use': 'email já está em uso',
+  'auth/internal-error': 'erro interno da aplicação de autenticação',
+  'auth/invalid-api-key': 'chave da api de autenticação inválida',
+  'auth/invalid-user-token': 'token inválido',
+  'auth/invalid-verification-code': 'código de verificação inválido',
+  'auth/invalid-email': 'email inválido',
+  'auth/invalid-credential': 'credenciais inválidas',
+  'auth/wrong-password': 'credenciais incorretas',
+  'auth/invalid-phone-number': 'número de celular inválida',
+  'auth/missing-verification-code': 'código de verificação faltando',
+  'auth/missing-phone-number': 'número de celular faltando',
+  'auth/account-exists-with-different-credential': 'credenciais inválidas',
+  'auth/operation-not-allowed': 'operação não permitida',
+  'auth/rejected-credential': 'credenciais negadas',
+  'auth/user-token-expired': 'token de autenticação expirado',
+  'auth/too-many-requests': 'muitas tentativas em pouco tempo, aguarde alguns minutos antes de tentar novamente',
+  'auth/unverified-email': 'email não verificado',
+  'auth/user-not-found': 'usuário não encontrado',
+  'auth/user-disabled': 'usuário desabilitado',
+  'auth/user-signed-out': 'usuário deslogado',
+  'auth/already-initialized': 'sessão já iniciada'
+}
+
+export default firebaseAuthErrorCodes

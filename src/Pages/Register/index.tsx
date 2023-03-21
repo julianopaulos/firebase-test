@@ -6,6 +6,7 @@ import Button from '../../components/Button'
 import Div from '../../components/Div'
 import Form from '../../components/Form'
 import Input from '../../components/Input'
+import firebaseAuthErrorCodes from '../../firebase/auth_errors'
 import { createNewUser, type UserInterface, type AuthError } from '../../firebase/collections/users'
 
 const Register = (): any => {
@@ -20,7 +21,12 @@ const Register = (): any => {
         alert('perfil criado com sucesso!')
       })
       .catch((e: AuthError) => {
-        alert(`erro ao cadastrar \n${e.message}`)
+        let errorMessage = ''
+        if ((firebaseAuthErrorCodes[e.code]).length > 0) {
+          errorMessage = firebaseAuthErrorCodes[e.code]
+        }
+
+        alert(`erro ao cadastrar \n${errorMessage}`)
       })
 
     event?.target.reset()

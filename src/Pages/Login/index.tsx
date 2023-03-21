@@ -6,13 +6,13 @@ import Button from '../../components/Button'
 import Div from '../../components/Div'
 import Form from '../../components/Form'
 import Input from '../../components/Input'
+import firebaseAuthErrorCodes from '../../firebase/auth_errors'
 import { loginUser, type UserInterface, type AuthError } from '../../firebase/collections/users'
 
 const Login = (): any => {
   const navigate = useNavigate()
 
   const { register, handleSubmit, formState: { errors } } = useForm<UserInterface>()
-
   const login: SubmitHandler<UserInterface> = async (data: UserInterface, event): Promise<void> => {
     await loginUser(data)
       .then(resp => {
@@ -20,8 +20,12 @@ const Login = (): any => {
         alert('autenticado com sucesso!')
       })
       .catch((e: AuthError) => {
-        console.log('error', e.stack)
-        alert(`erro ao entrar \n${e.message}`)
+        let errorMessage = ''
+        if ((firebaseAuthErrorCodes[e.code]).length > 0) {
+          errorMessage = firebaseAuthErrorCodes[e.code]
+        }
+
+        alert(`erro ao entrar \n${errorMessage}`)
       })
 
     event?.target.reset()
@@ -42,7 +46,7 @@ const Login = (): any => {
             ...register(
               'email',
               {
-                required: true,
+                required: 'email obrigatório',
                 pattern: {
                   value: /\S+@\S+\.\S+/,
                   message: 'o email inserido é inválido'
@@ -59,7 +63,7 @@ const Login = (): any => {
             ...register(
               'password',
               {
-                required: 'required',
+                required: 'senha obrigatória',
                 minLength: {
                   value: 5,
                   message: 'número mínimo de caracteres é 5'
