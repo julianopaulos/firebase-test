@@ -18,18 +18,17 @@ const Register = (): any => {
     await createNewUser(data)
       .then(resp => {
         console.log('resp', resp)
+        localStorage.setItem('token', resp.accessToken)
         alert('perfil criado com sucesso!')
       })
       .catch((e: AuthError) => {
-        let errorMessage = ''
+        let errorMessage = e.message
         if ((firebaseAuthErrorCodes[e.code]).length > 0) {
           errorMessage = firebaseAuthErrorCodes[e.code]
         }
 
         alert(`erro ao cadastrar \n${errorMessage}`)
       })
-
-    event?.target.reset()
   }
 
   return (
@@ -57,6 +56,19 @@ const Register = (): any => {
           }
         />
         {(errors.email != null) && <span role="alert">{errors.email.message}</span>}
+        <Input type='text' placeholder='celular' autoComplete='true' {
+            ...register(
+              'phoneNumber',
+              {
+                pattern: {
+                  value: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
+                  message: 'o celular inserido é inválido'
+                }
+              }
+            )
+          }
+        />
+        {(errors.phoneNumber != null) && <span role="alert">{errors.phoneNumber.message}</span>}
         <Input
           type='password'
           placeholder='senha'

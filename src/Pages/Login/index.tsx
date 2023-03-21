@@ -20,7 +20,7 @@ const Login = (): any => {
         alert('autenticado com sucesso!')
       })
       .catch((e: AuthError) => {
-        let errorMessage = ''
+        let errorMessage = e.message
         if ((firebaseAuthErrorCodes[e.code]).length > 0) {
           errorMessage = firebaseAuthErrorCodes[e.code]
         }
