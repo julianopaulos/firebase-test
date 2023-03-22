@@ -18,7 +18,6 @@ const Register = (): any => {
     await createNewUser(data)
       .then(resp => {
         console.log('resp', resp)
-        localStorage.setItem('token', resp.accessToken)
         alert('perfil criado com sucesso!')
       })
       .catch((e: AuthError) => {

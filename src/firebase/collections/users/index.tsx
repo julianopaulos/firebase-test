@@ -1,4 +1,5 @@
 import { getAuth, type AuthError, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import { firebase } from '../../config'
 
 interface User {
   email: string
@@ -31,9 +32,12 @@ onAuthStateChanged(auth, (user) => {
   }
 })
 
+const user = firebase.auth().currentUser
+
 export {
   createNewUser,
   loginUser,
+  user as CurrentUser,
   type User as UserInterface,
   type AuthError
 }
