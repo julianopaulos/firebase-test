@@ -19,6 +19,16 @@ import Login from './Pages/Login'
 
 const Router = createBrowserRouter([
   {
+    path: '/user/register',
+    element: <Register />,
+    errorElement: <NotFound />
+  },
+  {
+    path: '/user/login',
+    element: <Login />,
+    errorElement: <NotFound />
+  },
+  {
     path: '/',
     element: <Home />,
     errorElement: <NotFound />,
@@ -80,16 +90,6 @@ const Router = createBrowserRouter([
           const uuid: string = params.uuid ?? ''
           return await getStore(uuid)
         }
-      },
-      {
-        path: '/user/register',
-        element: <Register />,
-        errorElement: <NotFound />
-      },
-      {
-        path: '/user/login',
-        element: <Login />,
-        errorElement: <NotFound />
       }
     ]
   }

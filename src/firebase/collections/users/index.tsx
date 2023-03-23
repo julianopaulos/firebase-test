@@ -26,7 +26,7 @@ const loginUser = async ({ email, password }: User): Promise<any> => {
 
 onAuthStateChanged(auth, (user) => {
   if (user != null) {
-    console.log('current user', user)
+    console.log('current user', user.toJSON())
   } else {
     console.log('no logged user')
   }
@@ -37,6 +37,7 @@ const user = firebase.auth().currentUser
 export {
   createNewUser,
   loginUser,
+  auth,
   user as CurrentUser,
   type User as UserInterface,
   type AuthError

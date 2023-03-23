@@ -1,7 +1,7 @@
 import React from 'react'
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../components/Button'
 import Div from '../../components/Div'
 import Form from '../../components/Form'
@@ -80,6 +80,9 @@ const Login = (): any => {
           Entrar
         </Button>
       </Form>
+      <p>
+        Não tem uma conta? <Link to={'register'} style={{ fontWeight: 'bold' }}> Cadastrar Usuário </Link>
+      </p>
     </Div>
   )
 }
