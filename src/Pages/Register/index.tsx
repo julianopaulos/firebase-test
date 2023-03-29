@@ -19,6 +19,7 @@ const Register = (): any => {
       .then(resp => {
         console.log('resp', resp)
         alert('perfil criado com sucesso!')
+        navigate('/')
       })
       .catch((e: AuthError) => {
         let errorMessage = e.message

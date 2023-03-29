@@ -1,4 +1,6 @@
-import { getAuth, type AuthError, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import { getAuth, type AuthError, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth'
+import moment from 'moment'
+import { redirect } from 'react-router-dom'
 import { firebase } from '../../config'
 
 interface User {
@@ -24,6 +26,28 @@ const loginUser = async ({ email, password }: User): Promise<any> => {
   return user
 }
 
+const logoutUser = async (): Promise<any> => {
+  await signOut(auth)
+    .then((response) => {
+      console.log(response)
+      redirect('/user/login')
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+
+const checkUserSession = async (sessionTime: string | undefined): Promise<any> => {
+  if (sessionTime != null) {
+    const now = moment()
+    const signInSince = moment(sessionTime)
+    const duration = moment.duration(now.diff(signInSince))
+    if (duration.asHours() > 10) {
+      void logoutUser()
+    }
+  }
+}
+
 onAuthStateChanged(auth, (user) => {
   if (user != null) {
     console.log('current user', user.toJSON())
@@ -37,6 +61,8 @@ const user = firebase.auth().currentUser
 export {
   createNewUser,
   loginUser,
+  checkUserSession,
+  logoutUser,
   auth,
   user as CurrentUser,
   type User as UserInterface,
