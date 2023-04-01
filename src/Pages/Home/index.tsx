@@ -16,7 +16,7 @@ const Home = (): any => {
         navigate('/user/login')
       } else {
         setUserLastSignInTime(user.metadata.lastSignInTime)
-        void checkUserSession(user.metadata.lastSignInTime)
+        void checkUserSession(userLastSignInTime)
       }
     })
   }, [CurrentUser])
@@ -37,13 +37,15 @@ const Home = (): any => {
           <Link to={'stores'}> Listar lojas </Link>
         </h3>
         {(userLastSignInTime != null) && (
-          <h3><GoSignOut cursor='pointer' color='rgba()' onClick={() => { void logoutUser() }} /></h3>
+          <h3 style={{ display: 'flex', alignItems: 'center' }}>
+            <GoSignOut cursor='pointer' color='rgba(50, 50, 150, 1)' size={20} onClick={() => { void logoutUser() }} />
+          </h3>
         )}
       </Div>
       <Outlet />
       <footer style={{ bottom: '0', position: 'absolute', textAlign: 'right', width: '100%' }}>
         {(userLastSignInTime != null) && (
-          <h3>Logado desde {moment(userLastSignInTime).local(true).format('DD/MM/YYYY HH:mm:ss')}</h3>
+          <p>sessão: {moment(userLastSignInTime).local(true).format('DD/MM/YYYY HH:mm:ss')}</p>
         )}
       </footer>
     </>

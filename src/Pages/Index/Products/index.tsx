@@ -100,14 +100,16 @@ const Product = (): any => {
                       <AiOutlineEye size={20} title='Detalhes' />
                     </Link>
                     <Link to={`${product.uuid}/patch`}>
-                      <AiOutlineEdit size={20} title='Detalhes' />
+                      <AiOutlineEdit size={20} title='Editar' />
                     </Link>
-                    <AiOutlineDelete
-                      size={20}
-                      cursor='pointer'
-                      onClick={async () => { await removeProduct(product.uuid) }}
-                      title='Excluir Produto'
-                    />
+                    <Link to='#'>
+                      <AiOutlineDelete
+                        size={20}
+                        cursor='pointer'
+                        onClick={async () => { await removeProduct(product.uuid) }}
+                        title='Excluir Produto'
+                      />
+                    </Link>
                   </Div>
                 </td>
               </tr>

@@ -1,6 +1,6 @@
 import React from 'react'
-import { useLoaderData, useNavigate } from 'react-router-dom'
-import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { Link, useLoaderData, useNavigate } from 'react-router-dom'
+import { AiOutlineArrowLeft, AiOutlineEdit, AiOutlineLink } from 'react-icons/ai'
 
 import { type ProductInterface } from '../../../firebase/collections/products'
 
@@ -30,6 +30,7 @@ const ProductDetails = (): any => {
             <th>peso</th>
             <th>preço</th>
             <th>estoque</th>
+            <th><AiOutlineLink /></th>
           </tr>
         </thead>
         <tbody>
@@ -42,6 +43,11 @@ const ProductDetails = (): any => {
                   <td>{product.weight}</td>
                   <td>{product.price}</td>
                   <td>{product.stock}</td>
+                  <td align='center'>
+                    <Link to='patch'>
+                        <AiOutlineEdit size={20} title='Editar' />
+                    </Link>
+                  </td>
               </tr>
             )
           })}

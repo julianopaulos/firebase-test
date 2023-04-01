@@ -23,6 +23,10 @@ const StyledDiv = styled.div<StyleProps>`
   justify-content: ${(p: StyleProps) => p.justifyContent ?? 'flex-start'};
   flex-direction: ${(p: StyleProps) => p.flexDirection ?? 'row'};
   background-color: ${(p: StyleProps) => p.backgroundColor ?? 'inherit'};
+
+  h3 {
+    height: 25px;
+  }
 `
 
 const Div = forwardRef(({ children, ...props }: StyleProps, ref: ForwardedRef<HTMLDivElement>) => {

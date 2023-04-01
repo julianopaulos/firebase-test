@@ -17,7 +17,6 @@ const Login = (): any => {
     await loginUser(data)
       .then(resp => {
         console.log('resp', resp)
-        alert('autenticado com sucesso!')
         navigate('/')
       })
       .catch((e: AuthError) => {
