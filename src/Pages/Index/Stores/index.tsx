@@ -99,7 +99,7 @@ const Store = (): any => {
                       <AiOutlineEye size={20} />
                     </Link>
                     <Link to={`${store.uuid}/patch`}>
-                      <AiOutlineEdit size={20} title='Detalhes' />
+                      <AiOutlineEdit size={20} title='Editar' />
                     </Link>
                     <AiOutlineDelete
                       size={20}

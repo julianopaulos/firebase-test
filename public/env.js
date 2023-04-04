@@ -7,7 +7,7 @@ window.env = {
   "npm_config_noproxy": "",
   "MOTD_SHOWN": "update-motd",
   "HOME": "/home/juliano",
-  "OLDPWD": "/home/juliano",
+  "OLDPWD": "/home/juliano/projects",
   "NVM_BIN": "/home/juliano/.nvm/versions/node/v18.14.1/bin",
   "npm_package_json": "/home/juliano/projects/firebase-test/package.json",
   "npm_config_userconfig": "/home/juliano/.npmrc",

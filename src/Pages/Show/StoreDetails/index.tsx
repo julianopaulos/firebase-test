@@ -1,6 +1,6 @@
 import React from 'react'
-import { useLoaderData, useNavigate } from 'react-router-dom'
-import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { Link, useLoaderData, useNavigate } from 'react-router-dom'
+import { AiOutlineArrowLeft, AiOutlineEdit, AiOutlineLink } from 'react-icons/ai'
 
 import { type StoreInterface } from '../../../firebase/collections/stores'
 
@@ -24,9 +24,10 @@ const StoreDetails = (): any => {
       <Table>
         <thead>
           <tr>
-          <th>identificação</th>
-          <th>nome</th>
-          <th>peso</th>
+            <th>identificação</th>
+            <th>nome</th>
+            <th>peso</th>
+            <th><AiOutlineLink /></th>
           </tr>
         </thead>
         <tbody>
@@ -36,6 +37,11 @@ const StoreDetails = (): any => {
                 <td>{store.uuid}</td>
                 <td>{store.name}</td>
                 <td>{store.address}</td>
+                <td align='center'>
+                  <Link to='patch'>
+                    <AiOutlineEdit size={20} title='Editar' />
+                  </Link>
+                </td>
               </tr>
             )
           })}

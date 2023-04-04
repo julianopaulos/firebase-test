@@ -5,6 +5,7 @@ import { GoSignOut } from 'react-icons/go'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import Div from '../../components/Div'
 import { auth, checkUserSession, CurrentUser, logoutUser } from '../../firebase/collections/users'
+import { AiOutlineMenu } from 'react-icons/ai'
 
 const Home = (): any => {
   const [userLastSignInTime, setUserLastSignInTime] = useState<string | undefined>()
@@ -21,9 +22,28 @@ const Home = (): any => {
     })
   }, [CurrentUser])
 
+  const collapseMenu = (): any => {
+    const menu = document.getElementById('menu')
+    if (menu != null) {
+      menu.style.display = (menu?.style.display === 'none') ? 'flex' : 'none'
+    }
+  }
+
   return (
     <>
-      <Div justifyContent='space-around' alignItems='center'>
+      <AiOutlineMenu
+        style={{ marginLeft: 'auto', position: 'absolute', right: '0' }}
+        size={25}
+        cursor='pointer'
+        onClick={collapseMenu}
+      />
+      <Div
+        flexDirection='column'
+        justifyContent='space-around'
+        alignItems='center'
+        id='menu'
+        style={{ display: 'none' }}
+      >
         <h3>
           <Link to={'product'}> Cadastrar produto </Link>
         </h3>
