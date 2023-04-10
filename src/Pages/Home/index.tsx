@@ -23,9 +23,21 @@ const Home = (): any => {
   }, [CurrentUser])
 
   const collapseMenu = (): any => {
-    const menu = document.getElementById('menu')
+    const menu = document.querySelector('div.menu')
     if (menu != null) {
-      menu.style.display = (menu?.style.display === 'none') ? 'flex' : 'none'
+      let isActive = false
+      menu.classList.forEach(className => {
+        if (className === 'active') {
+          isActive = true
+          return false
+        }
+      })
+
+      if (!isActive) {
+        menu.classList.add('active')
+      } else {
+        menu.classList.remove('active')
+      }
     }
   }
 
@@ -41,8 +53,7 @@ const Home = (): any => {
         flexDirection='column'
         justifyContent='space-around'
         alignItems='center'
-        id='menu'
-        style={{ display: 'none' }}
+        className='menu'
       >
         <h3>
           <Link to={'product'}> Cadastrar produto </Link>

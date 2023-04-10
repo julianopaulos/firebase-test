@@ -1,4 +1,12 @@
-import { getAuth, type AuthError, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth'
+import {
+  getAuth,
+  type AuthError,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  type User as AuthUser
+} from 'firebase/auth'
 import moment from 'moment'
 import { redirect } from 'react-router-dom'
 import { firebase } from '../../config'
@@ -48,9 +56,10 @@ const checkUserSession = async (sessionTime: string | undefined): Promise<any> =
   }
 }
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, (user: AuthUser | null) => {
   if (user != null) {
     console.log('current user', user.toJSON())
+    void checkUserSession(user.metadata.lastSignInTime)
   } else {
     console.log('no logged user')
   }

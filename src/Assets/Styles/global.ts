@@ -20,9 +20,22 @@ export default createGlobalStyle<HtmlHTMLAttributes<HTMLElement>>`
   a, svg {
     text-decoration: none;
     transition: .4s;
+    color: #8050CC;
   }
 
   a:hover, svg:hover {
     opacity: 0.6;
+  }
+
+  .menu {
+    transition: opacity .6s;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .menu.active {
+    opacity: 1;
+    height: auto;
   }
 `
