@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { type SubmitHandler, useForm } from 'react-hook-form'
-import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../components/Button'
 import Div from '../../components/Div'
@@ -8,9 +7,13 @@ import Form from '../../components/Form'
 import Input from '../../components/Input'
 import firebaseAuthErrorCodes from '../../firebase/auth_errors'
 import { loginUser, type UserInterface, type AuthError } from '../../firebase/collections/users'
+import LoginError from '../../components/LoginError'
 
 const Login = (): any => {
   const navigate = useNavigate()
+
+  const [displayErrorMessage, setDisplayErrorMessage] = useState<string>('none')
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   const { register, handleSubmit, formState: { errors } } = useForm<UserInterface>()
   const login: SubmitHandler<UserInterface> = async (data: UserInterface, event): Promise<void> => {
@@ -20,27 +23,19 @@ const Login = (): any => {
         navigate('/')
       })
       .catch((e: AuthError) => {
-        let errorMessage = e.message
+        setErrorMessage(e.message)
         if ((firebaseAuthErrorCodes[e.code]).length > 0) {
-          errorMessage = firebaseAuthErrorCodes[e.code]
+          setErrorMessage(firebaseAuthErrorCodes[e.code])
         }
 
-        alert(`erro ao entrar \n${errorMessage}`)
+        setDisplayErrorMessage('block')
       })
 
     event?.target.reset()
   }
 
   return (
-    <Div flexDirection='column'>
-      <Button
-        onClick={() => { navigate(-1) }}
-        elementWidth={'20px'}
-        margin='10px auto 10px 10px'
-      >
-        <AiOutlineArrowLeft size={20} />
-      </Button>
-      <br/>
+    <Div flexDirection='column' margin='150px 0'>
       <Form onSubmit={handleSubmit(login)}>
         <Input type='email' placeholder='email' {
             ...register(
@@ -83,6 +78,7 @@ const Login = (): any => {
       <p>
         Não tem uma conta? <Link to={'register'} style={{ fontWeight: 'bold' }}> Cadastrar Usuário </Link>
       </p>
+      <LoginError message={errorMessage} display={displayErrorMessage} />
     </Div>
   )
 }
